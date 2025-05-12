@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR-сканер с загрузкой фото</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        padding: 20px;
+      }
+
+      .container {
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .qr-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .qr-code-container {
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 15px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .qr-code-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .download-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #6e8efb;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .download-btn:hover {
+        background: #5a7df5;
+        transform: translateY(-2px);
+      }
+
+      .or-divider {
+        margin: 20px 0;
+        position: relative;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .or-divider::before,
+      .or-divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .or-divider::before {
+        left: 0;
+      }
+
+      .or-divider::after {
+        right: 0;
+      }
+
+      .upload-section {
+        margin-top: 20px;
+      }
+
+      .upload-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .upload-btn:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px);
+      }
+
+      #fileInput {
+        display: none;
+      }
+
+      .scanner-result {
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        display: none;
+      }
+
+      .action-buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .action-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .action-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .open-link {
+        background: #4caf50;
+        color: white;
+      }
+
+      .copy-link {
+        background: #2196f3;
+        color: white;
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.4rem;
+        }
+
+        .qr-card {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="qr-card">
+        <h1>QR-код сканер</h1>
+
+        <div class="qr-code-container">
+          <img
+            id="qrCodeImage"
+            class="qr-code-img"
+            src="./qrcode.png"
+            alt="QR Code"
+          />
+          <button id="downloadBtn" class="download-btn">
+            Сохранить QR-код
+          </button>
+        </div>
+
+        <div class="or-divider">ИЛИ</div>
+
+        <div class="upload-section">
+          <p>Загрузите фото с QR-кодом для сканирования</p>
+          <label for="fileInput" class="upload-btn">Выбрать фото</label>
+          <input type="file" id="fileInput" accept="image/*" />
+        </div>
+
+        <div id="scannerResult" class="scanner-result"></div>
+
+        <div id="actionButtons" class="action-buttons" style="display: none">
+          <button id="openLinkBtn" class="action-btn open-link">
+            Перейти по ссылке
+          </button>
+          <button id="copyLinkBtn" class="action-btn copy-link">
+            Копировать
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const qrCodeImage = document.getElementById("qrCodeImage");
+        const downloadBtn = document.getElementById("downloadBtn");
+        const fileInput = document.getElementById("fileInput");
+        const scannerResult = document.getElementById("scannerResult");
+        const actionButtons = document.getElementById("actionButtons");
+        const openLinkBtn = document.getElementById("openLinkBtn");
+        const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+        let currentScannedData = "";
+
+        // Скачивание QR-кода
+        downloadBtn.addEventListener("click", () => {
+          const link = document.createElement("a");
+          link.href = qrCodeImage.src;
+          link.download = "qr-code.png";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        });
+
+        // Обработка загрузки фото
+        fileInput.addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => {
+              scanQRCodeFromImage(img);
+            };
+            img.src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+
+        // Сканирование QR-кода с изображения
+        function scanQRCodeFromImage(image) {
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+
+          // Устанавливаем размер canvas равным размеру изображения
+          canvas.width = image.width;
+          canvas.height = image.height;
+
+          // Рисуем изображение на canvas
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+          // Получаем данные изображения
+          const imageData = context.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+
+          // Пытаемся декодировать QR-код
+          const code = jsQR(imageData.data, imageData.width, imageData.height, {
+            inversionAttempts: "dontInvert",
+          });
+
+          if (code) {
+            currentScannedData = code.data;
+            scannerResult.textContent = `Найден QR-код: ${code.data}`;
+            scannerResult.style.display = "block";
+
+            // Показываем кнопки действий, если это ссылка
+            if (isValidUrl(code.data)) {
+              actionButtons.style.display = "flex";
+            } else {
+              actionButtons.style.display = "none";
+            }
+          } else {
+            scannerResult.textContent =
+              "QR-код не найден. Попробуйте другое изображение.";
+            scannerResult.style.display = "block";
+            actionButtons.style.display = "none";
+          }
+        }
+
+        // Проверка, является ли строка URL
+        function isValidUrl(string) {
+          try {
+            new URL(string);
+            return true;
+          } catch (_) {
+            return false;
+          }
+        }
+
+        // Открытие ссылки
+        openLinkBtn.addEventListener("click", () => {
+          if (currentScannedData && isValidUrl(currentScannedData)) {
+            window.open(currentScannedData, "_blank");
+          }
+        });
+
+        // Копирование ссылки
+        copyLinkBtn.addEventListener("click", () => {
+          if (currentScannedData) {
+            navigator.clipboard
+              .writeText(currentScannedData)
+              .then(() => {
+                const originalText = copyLinkBtn.textContent;
+                copyLinkBtn.textContent = "Скопировано!";
+                setTimeout(() => {
+                  copyLinkBtn.textContent = originalText;
+                }, 2000);
+              })
+              .catch((err) => {
+                console.error("Ошибка копирования: ", err);
+              });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
