@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ислам - Путь к истине</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 100%;
+        padding: 10px;
+      }
+
+      header {
+        background-color: #2c5e1a;
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+      }
+
+      .datetime-display {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+
+      .time-seconds {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .prayer-times {
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .prayer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .prayer-card {
+        background-color: #f0f7ed;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        border-left: 4px solid #2c5e1a;
+      }
+
+      .prayer-name {
+        font-weight: bold;
+        color: #2c5e1a;
+      }
+
+      .prayer-time {
+        font-size: 1.2rem;
+        margin-top: 5px;
+      }
+
+      .section {
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-title {
+        color: #2c5e1a;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+        border-bottom: 2px solid #f0f7ed;
+        padding-bottom: 5px;
+      }
+
+      .surah-list {
+        list-style: none;
+      }
+
+      .surah-item {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .surah-item:last-child {
+        border-bottom: none;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #2c5e1a;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #1e3d12;
+      }
+
+      .btn-more {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .prayer-steps {
+        list-style-position: inside;
+        padding-left: 5px;
+      }
+
+      .prayer-steps li {
+        margin-bottom: 10px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 15px;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      @media (min-width: 768px) {
+        .prayer-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Ислам - Путь к истине</h1>
+        <div class="datetime-display">
+          <div id="date-display"></div>
+          <div class="time-seconds" id="time-display"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <section class="prayer-times">
+        <h2 class="section-title">Времена намаза</h2>
+        <div class="prayer-grid" id="prayer-times">
+          <!-- Времена намаза будут заполнены через JS -->
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Короткие суры (кыска сүрелер)</h2>
+        <ul class="surah-list" id="main-surah-list">
+          <li class="surah-item">
+            <span>Аль-Фатиха</span>
+            <a href="#" class="btn" onclick="showSurah('fatiha')"
+              >Читать <br />
+              окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Аль-Ихляс</span>
+            <a href="#" class="btn" onclick="showSurah('ihlas')"
+              >Читать <br />
+              окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Аль-Фаляк</span>
+            <a href="#" class="btn" onclick="showSurah('falak')"
+              >Читать <br />окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Ан-Нас</span>
+            <a href="#" class="btn" onclick="showSurah('nas')"
+              >Читать <br />окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Аль-Кадр</span>
+            <a href="#" class="btn" onclick="showSurah('kadr')"
+              >Читать <br />окуу</a
+            >
+          </li>
+        </ul>
+
+        <button class="btn btn-more" onclick="showMoreSurahs()">
+          Ещё суры (Дагы сүрөөлөр)
+        </button>
+
+        <ul class="surah-list hidden" id="more-surah-list">
+          <li class="surah-item">
+            <span>Аль-Кяусар</span>
+            <a href="#" class="btn" onclick="showSurah('kawsar')"
+              >Читать<br />окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Аль-Аср</span>
+            <a href="#" class="btn" onclick="showSurah('asr')"
+              >Читать<br />окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Аль-Кафирун</span>
+            <a href="#" class="btn" onclick="showSurah('kafirun')"
+              >Читать<br />окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Аль-Маун</span>
+            <a href="#" class="btn" onclick="showSurah('maun')"
+              >Читать<br />окуу</a
+            >
+          </li>
+          <li class="surah-item">
+            <span>Аль-Кариа</span>
+            <a href="#" class="btn" onclick="showSurah('karia')"
+              >Читать<br />окуу</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Как совершать намаз (Намаз кантип окулат)</h2>
+        <p>
+          Пошаговая инструкция для начинающих: <br />үйрөнчүктөр үчүн
+          кадам-кадам нускамалар:
+        </p>
+        <hr />
+        <ol class="prayer-steps">
+          <li>
+            Очиститесь (совершите малое омовение - вуду). <br />Тазалануу (кичи
+            даарат алуу – даарат).
+          </li>
+          <hr />
+          <li>
+            Встаньте в направлении Киблы (Каабы в Мекке). <br />Кыбылага
+            (Меккедеги Кааба) тарапка тургула.
+          </li>
+          <hr />
+          <li>
+            Сделайте намерение в сердце для конкретного намаза. <br />Белгилүү
+            бир намазга жүрөгүңдө ниет кыл.
+          </li>
+          <hr />
+          <li>
+            Поднимите руки до уровня ушей и произнесите "Аллаху Акбар".
+            <br />Колдорду кулактын деңгээлине чейин көтөрүп "Аллаху Акбар" деп
+            айтыңыз.
+          </li>
+          <hr />
+          <li>
+            Сложите руки на груди и читайте суру Аль-Фатиха. <br />Колду
+            киндиктен ылдый коюп Фатиха сүрөсүн оку.
+          </li>
+          <hr />
+          <li>
+            Сделайте поясной поклон (руку') с прославлением Аллаха. <br />Руку
+            (руку) Аллахты тасбих кылуу менен кылгыла.
+          </li>
+          <hr />
+          <li>
+            Выпрямитесь и затем совершите земной поклон (суджуд). <br />Тике
+            туруп анан сажда кыл (сужуд).
+          </li>
+          <hr />
+          <li>
+            Сядьте между двумя земными поклонами, затем совершите второй суджуд.
+            <br />Эки сажданын ортосуна отур, анан экинчи сажда кыл.
+          </li>
+          <hr />
+          <li>
+            Повторите ракааты в зависимости от намаза. <br />Намазга жараша
+            рекеттерди кайтала.
+          </li>
+          <hr />
+          <li>
+            В конце произнесите ташаххуд и салям. <br />Аягында ташаххуд жана
+            салам айт.
+          </li>
+        </ol>
+        <a href="#" class="btn" onclick="showDetailedPrayer()">Подробнее</a>
+        <a
+          href="https://youtu.be/-PHFXwg-mAA?si=i3cXccRqI7X4ILFT"
+          class="btn"
+          onclick="showDetailedPrayer()"
+          >Багымдат</a
+        >
+        <a
+          href="https://youtu.be/qdPCAL3M1Ck?si=YJ4qMZ08MOWcS02A"
+          class="btn"
+          onclick="showDetailedPrayer()"
+          >Бешим</a
+        >
+        <a
+          href="https://youtu.be/rb6W2bsG-lc?si=AlEKhlIzX2hG2wO-"
+          class="btn"
+          onclick="showDetailedPrayer()"
+          >Аср</a
+        >
+        <a
+          href="https://youtu.be/YuXRw3wcGBo?si=LaApfyntHoKlljbi"
+          class="btn"
+          onclick="showDetailedPrayer()"
+          >Шам</a
+        >
+        <a
+          href="https://youtu.be/-ZjB5JQLoMg?si=G0uBq6lJODnZNU3w"
+          class="btn"
+          onclick="showDetailedPrayer()"
+          >Куптан</a
+        >
+
+        <div id="detailed-prayer" class="hidden">
+          <h3 style="margin-top: 15px; color: #2c5e1a">
+            Подробное описание намаза
+          </h3>
+          <p>
+            <strong>1. Намерение (ният):</strong> В сердце вы должны иметь
+            намерение совершить конкретный намаз, например: "Я намереваюсь
+            совершить утренний (Фаджр) намаз в два ракаата ради Аллаха".
+          </p>
+
+          <p>
+            <strong>2. Такбир:</strong> Поднимите руки до уровня ушей, ладони
+            направлены в сторону Киблы, и произнесите: "Аллаху Акбар" (Аллах
+            Велик).
+          </p>
+
+          <p>
+            <strong>3. Стояние (кийам):</strong> Положите правую руку на левую
+            на груди. Читайте: <br />"Субханака-Ллахумма ва бихамдика, ва
+            табарака-смука, ва та'аля джаддука, ва ля иляха гайрук" <br />Затем:
+            "А'узу би-Лляхи минаш-шайтанир-раджим.
+            Бисми-Лляхи-р-Рахмани-р-Рахим" <br />После этого читайте суру
+            Аль-Фатиха и другую суру или аяты из Корана.
+          </p>
+
+          <p>
+            <strong>4. Поясной поклон (руку'):</strong> Сказав "Аллаху Акбар",
+            наклонитесь, положив руки на колени. Спина должна быть параллельна
+            полу. Произнесите три раза: "Субхана Раббияль-Азым" (Преславен мой
+            Великий Господь).
+          </p>
+
+          <p>
+            <strong>5. Выпрямление:</strong> Возвращаясь в стоячее положение,
+            скажите: "Сами'а-Ллаху лиман хамидах" (Аллах слышит того, кто Его
+            восхваляет), затем: "Раббана ва лякаль-хамд" (Господь наш, хвала
+            Тебе).
+          </p>
+
+          <p>
+            <strong>6. Земной поклон (суджуд):</strong> Сказав "Аллаху Акбар",
+            опуститесь на колени, затем коснитесь лбом и носом земли. Руки
+            должны быть на уровне плеч. Произнесите три раза: "Субхана
+            Раббияль-А'ля" (Преславен мой Всевышний Господь).
+          </p>
+
+          <p>
+            <strong>7. Сидение между суджудами:</strong> Сказав "Аллаху Акбар",
+            сядьте на левую ногу, правая нога стоит вертикально. Руки на бедрах.
+            Произнесите: "Рабби-гфир ли" (Господь мой, прости меня).
+          </p>
+
+          <p>
+            <strong>8. Второй суджуд:</strong> Повторите земной поклон как в
+            пункте 6.
+          </p>
+
+          <p>
+            <strong>9. Второй ракаат:</strong> Встаньте для второго ракаата и
+            повторите все действия, начиная с чтения Аль-Фатихи.
+          </p>
+
+          <p>
+            <strong>10. Ташаххуд:</strong> После последнего суджуда сядьте для
+            чтения ташаххуда: <br />"Ат-тахиййату ли-Лляхи ва-с-салавату
+            ва-т-таййибат. Ас-саляму 'аляйка аййуха-н-набиййу ва рахмату-Ллахи
+            ва баракатух. Ас-саляму 'аляйна ва 'аля 'ибади-Лляхи-с-салихин.
+            Ашхаду алля иляха илля-Ллах, ва ашхаду анна Мухаммадан 'абдуху ва
+            расулух"
+          </p>
+
+          <p>
+            <strong>11. Салям:</strong> Поверните голову направо и скажите:
+            "Ас-саляму 'аляйкум ва рахмату-Ллах", затем налево с теми же
+            словами. На этом намаз завершен.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="surah-display" style="display: none">
+        <h2 class="section-title" id="surah-title"></h2>
+        <div id="surah-content"></div>
+        <a href="#" class="btn" onclick="hideSurah()">Назад</a>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>© 2023 Исламский ресурс. Все права защищены.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Обновление даты и времени с секундами
+      function updateDateTime() {
+        const now = new Date();
+
+        // Форматирование даты
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        document.getElementById("date-display").textContent =
+          now.toLocaleDateString("ru-RU", options);
+
+        // Форматирование времени с секундами
+        const hours = now.getHours().toString().padStart(2, "0");
+        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const seconds = now.getSeconds().toString().padStart(2, "0");
+        document.getElementById(
+          "time-display"
+        ).textContent = `${hours}:${minutes}:${seconds}`;
+
+        // Обновляем каждую секунду
+        setTimeout(updateDateTime, 1000);
+      }
+
+      // Инициализация времен намаза (примерные значения, в реальном приложении нужно использовать API)
+      function initPrayerTimes() {
+        const now = new Date();
+        const prayerTimes = [
+          { name: "Багымдат", time: "02:21" },
+          { name: "Кун чыгуу", time: "07:00" },
+          { name: "Бешим", time: "12:31" },
+          { name: "Аср", time: "17:53" },
+          { name: "Шам", time: calculateMaghribTime() },
+          { name: "Куптан", time: "22:32" },
+        ];
+
+        const prayerGrid = document.getElementById("prayer-times");
+        prayerGrid.innerHTML = "";
+
+        prayerTimes.forEach((prayer) => {
+          const prayerCard = document.createElement("div");
+          prayerCard.className = "prayer-card";
+          prayerCard.innerHTML = `
+                    <div class="prayer-name">${prayer.name}</div>
+                    <div class="prayer-time">${prayer.time}</div>
+                `;
+          prayerGrid.appendChild(prayerCard);
+        });
+      }
+
+      // Простая функция для расчета времени магриба (заката)
+      function calculateMaghribTime() {
+        const now = new Date();
+        const month = now.getMonth() + 1;
+        const hour = now.getHours();
+
+        // Очень упрощенный расчет (в реальном приложении нужно использовать API или сложные алгоритмы)
+        if (month >= 3 && month <= 9) {
+          return "20:30"; // Летнее время
+        } else {
+          return "18:00"; // Зимнее время
+        }
+      }
+
+      // Показ дополнительных сур
+      function showMoreSurahs() {
+        const moreSurahs = document.getElementById("more-surah-list");
+        const btnMore = document.querySelector(".btn-more");
+
+        if (moreSurahs.classList.contains("hidden")) {
+          moreSurahs.classList.remove("hidden");
+          btnMore.textContent = "Скрыть";
+        } else {
+          moreSurahs.classList.add("hidden");
+          btnMore.textContent = "Ещё суры";
+        }
+      }
+
+      // Показ суры
+      function showSurah(surahName) {
+        const surahDisplay = document.getElementById("surah-display");
+        const surahTitle = document.getElementById("surah-title");
+        const surahContent = document.getElementById("surah-content");
+
+        surahDisplay.style.display = "block";
+
+        switch (surahName) {
+          case "fatiha":
+            surahTitle.textContent = "Сура Аль-Фатиха";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">مَالِكِ يَوْمِ الدِّينِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Во имя Аллаха, Милостивого, Милосердного!</p>
+                        <p>2. Хвала Аллаху, Господу миров,</p>
+                        <p>3. Милостивому, Милосердному,</p>
+                        <p>4. Властелину Дня воздаяния!</p>
+                        <p>5. Тебе одному мы поклоняемся и Тебя одного молим о помощи.</p>
+                        <p>6. Веди нас прямым путем,</p>
+                        <p>7. путем тех, кого Ты облагодетельствовал, не тех, на кого пал гнев, и не заблудших.</p>
+                    `;
+            break;
+
+          case "ihlas":
+            surahTitle.textContent = "Сура Аль-Ихляс";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">قُلْ هُوَ اللَّهُ أَحَدٌ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">اللَّهُ الصَّمَدُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">لَمْ يَلِدْ وَلَمْ يُولَدْ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Скажи: "Он - Аллах Единый,</p>
+                        <p>2. Аллах Самодостаточный.</p>
+                        <p>3. Он не родил и не был рожден,</p>
+                        <p>4. и нет никого, равного Ему".</p>
+                    `;
+            break;
+
+          case "falak":
+            surahTitle.textContent = "Сура Аль-Фаляк";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">مِنْ شَرِّ مَا خَلَقَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Скажи: "Прибегаю к защите Господа рассвета</p>
+                        <p>2. от зла того, что Он сотворил,</p>
+                        <p>3. от зла мрака, когда он наступает,</p>
+                        <p>4. от зла колдуний, дующих на узлы,</p>
+                        <p>5. от зла завистника, когда он завидует".</p>
+                    `;
+            break;
+
+          case "nas":
+            surahTitle.textContent = "Сура Ан-Нас";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">قُلْ أَعُوذُ بِرَبِّ النَّاسِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">مَلِكِ النَّاسِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">إِلَٰهِ النَّاسِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">مِنَ الْجِنَّةِ وَالنَّاسِ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Скажи: "Прибегаю к защите Господа людей,</p>
+                        <p>2. Царя людей,</p>
+                        <p>3. Бога людей,</p>
+                        <p>4. от зла искусителя отступающего при поминании Аллаха,</p>
+                        <p>5. который наущает в груди людей,</p>
+                        <p>6. от джиннов и людей".</p>
+                    `;
+            break;
+
+          case "kadr":
+            surahTitle.textContent = "Сура Аль-Кадр";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Воистину, Мы ниспослали его (Коран) в ночь предопределения (или величия).</p>
+                        <p>2. Откуда ты мог знать, что такое ночь предопределения (или величия)?</p>
+                        <p>3. Ночь предопределения (или величия) лучше тысячи месяцев.</p>
+                        <p>4. В эту ночь ангелы и Дух (Джибриль) нисходят с дозволения их Господа по всем Его повелениям.</p>
+                        <p>5. Она благополучна вплоть до наступления зари.</p>
+                    `;
+            break;
+
+          case "kawsar":
+            surahTitle.textContent = "Сура Аль-Кяусар";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">فَصَلِّ لِرَبِّكَ وَانْحَرْ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Воистину, Мы даровали тебе изобилие (реку в Раю, именуемую аль-Каусар).</p>
+                        <p>2. Посему совершай намаз ради своего Господа и закалывай жертву.</p>
+                        <p>3. Воистину, твой ненавистник сам окажется бездетным.</p>
+                    `;
+            break;
+
+          case "asr":
+            surahTitle.textContent = "Сура Аль-Аср";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَالْعَصْرِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Клянусь временем!</p>
+                        <p>2. Воистину, человек в убытке,</p>
+                        <p>3. кроме тех, которые уверовали, совершали праведные деяния, заповедали друг другу истину и заповедали друг другу терпение!</p>
+                    `;
+            break;
+
+          case "kafirun":
+            surahTitle.textContent = "Сура Аль-Кафирун";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">قُلْ يَا أَيُّهَا الْكَافِرُونَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">لَا أَعْبُدُ مَا تَعْبُدُونَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَلَا أَنَا عَابِدٌ مَا عَبَدْتُمْ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">لَكُمْ دِينُكُمْ وَلِيَ دِينِ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Скажи: "О неверующие!</p>
+                        <p>2. Я не поклоняюсь тому, чему вы поклоняетесь,</p>
+                        <p>3. а вы не поклоняетесь Тому, Кому я поклоняюсь.</p>
+                        <p>4. Я не поклоняюсь так, как поклоняетесь вы,</p>
+                        <p>5. а вы не поклоняетесь так, как поклоняюсь я.</p>
+                        <p>6. У вас - ваша религия, а у меня - моя!"</p>
+                    `;
+            break;
+
+          case "maun":
+            surahTitle.textContent = "Сура Аль-Маун";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">فَوَيْلٌ لِلْمُصَلِّينَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">الَّذِينَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">الَّذِينَ هُمْ يُرَاءُونَ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَيَمْنَعُونَ الْمَاعُونَ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Видел ли ты того, кто считает ложью воздаяние?</p>
+                        <p>2. Это - тот, кто гонит сироту</p>
+                        <p>3. и не побуждает накормить бедного.</p>
+                        <p>4. Горе молящимся,</p>
+                        <p>5. которые небрежны к своим намазам,</p>
+                        <p>6. которые лицемерят</p>
+                        <p>7. и отказывают даже в мелочи!</p>
+                    `;
+            break;
+
+          case "karia":
+            surahTitle.textContent = "Сура Аль-Кариа";
+            surahContent.innerHTML = `
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">الْقَارِعَةُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">مَا الْقَارِعَةُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَمَا أَدْرَاكَ مَا الْقَارِعَةُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">يَوْمَ يَكُونُ النَّاسُ كَالْفَرَاشِ الْمَبْثُوثِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَتَكُونُ الْجِبَالُ كَالْعِهْنِ الْمَنْفُوشِ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">فَأَمَّا مَنْ ثَقُلَتْ مَوَازِينُهُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">فَهُوَ فِي عِيشَةٍ رَاضِيَةٍ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَأَمَّا مَنْ خَفَّتْ مَوَازِينُهُ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">فَأُمُّهُ هَاوِيَةٌ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">وَمَا أَدْرَاكَ مَا هِيَهْ</p>
+                        <p style="text-align: center; font-size: 1.5rem; margin: 20px 0; direction: rtl;">نَارٌ حَامِيَةٌ</p>
+                        
+                        <h3 style="margin-top: 20px; color: #2c5e1a;">Перевод смыслов:</h3>
+                        <p>1. Великое бедствие!</p>
+                        <p>2. Что такое великое бедствие?</p>
+                        <p>3. Откуда ты мог знать, что такое великое бедствие?</p>
+                        <p>4. В тот день люди будут разлетаться, как мотыльки,</p>
+                        <p>5. а горы будут подобны расчесанной шерсти.</p>
+                        <p>6. Тот, чья чаша весов перетянет,</p>
+                        <p>7. обретет приятную жизнь.</p>
+                        <p>8. А тот, чья чаша весов окажется легкой,</p>
+                        <p>9. будет иметь бездну своим пристанищем.</p>
+                        <p>10. Откуда ты мог знать, что это такое?</p>
+                        <p>11. Это - огонь, горячий до крайности!</p>
+                    `;
+            break;
+        }
+
+        // Прокрутка к суре
+        surahDisplay.scrollIntoView({ behavior: "smooth" });
+      }
+
+      function hideSurah() {
+        document.getElementById("surah-display").style.display = "none";
+      }
+
+      function showDetailedPrayer() {
+        const detailedSection = document.getElementById("detailed-prayer");
+        if (detailedSection.classList.contains("hidden")) {
+          detailedSection.classList.remove("hidden");
+          detailedSection.scrollIntoView({ behavior: "smooth" });
+        } else {
+          detailedSection.classList.add("hidden");
+        }
+      }
+
+      // Инициализация при загрузке
+      window.onload = function () {
+        updateDateTime();
+        initPrayerTimes();
+      };
+    </script>
+  </body>
+</html>
