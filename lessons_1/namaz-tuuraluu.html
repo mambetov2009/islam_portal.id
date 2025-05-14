@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAMA3 TYYPAЛYY</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #1e2433;
+        color: white;
+        min-height: 100vh;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 10px;
+        position: relative;
+        border-bottom: 1px solid #2a3142;
+        background-color: #1a1f2b;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .back-btn, .home-btn {
+        position: absolute;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .back-btn {
+        left: 15px;
+        background-color: #2a3142;
+      }
+
+      .home-btn {
+        right: 15px;
+        background-color: #2a3142;
+      }
+
+      .back-btn:hover, .home-btn:hover {
+        background-color: #3a4357;
+        transform: scale(1.1);
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        fill: #e6c700;
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #e6c700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .content {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .yellow-title {
+        color: #e6c700;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        margin: 25px 0 30px 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        color: #bbbdc2;
+        font-size: 22px;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .paragraph {
+        margin-bottom: 25px;
+        font-size: 17px;
+        color: #d1d3d6;
+        text-align: justify;
+      }
+
+      .quote {
+        display: block;
+        padding: 15px;
+        margin: 20px 0;
+        background-color: #2a3142;
+        border-left: 4px solid #e6c700;
+        font-style: italic;
+        color: #bbbdc2;
+        border-radius: 0 5px 5px 0;
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin: 40px 0 25px 0;
+        text-align: center;
+        color: #e6c700;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #e6c700, transparent);
+      }
+
+      .requirements-list, 
+      .prayer-types-list,
+      .prayer-conditions-list,
+      .prayer-inner-conditions-list {
+        list-style: none;
+        margin: 25px 0;
+        padding-left: 0;
+      }
+
+      .requirements-list li,
+      .prayer-types-list li,
+      .prayer-conditions-list li,
+      .prayer-inner-conditions-list li {
+        margin-bottom: 15px;
+        display: flex;
+        color: #d1d3d6;
+        background-color: #2a3142;
+        padding: 15px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .requirements-list li:hover,
+      .prayer-types-list li:hover,
+      .prayer-conditions-list li:hover,
+      .prayer-inner-conditions-list li:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .number {
+        margin-right: 15px;
+        min-width: 25px;
+        height: 25px;
+        background-color: #e6c700;
+        color: #1e2433;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .prayer-type-content {
+        flex-grow: 1;
+        line-height: 1.6;
+      }
+
+      .prayer-type {
+        font-weight: bold;
+        color: #e6c700;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .content {
+          padding: 15px;
+        }
+        
+        .yellow-title {
+          font-size: 24px;
+          margin: 20px 0 25px 0;
+        }
+        
+        .subtitle {
+          font-size: 20px;
+        }
+        
+        .section-title {
+          font-size: 22px;
+        }
+        
+        .paragraph {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .title {
+          font-size: 20px;
+        }
+        
+        .yellow-title {
+          font-size: 22px;
+        }
+        
+        .subtitle {
+          font-size: 18px;
+        }
+        
+        .section-title {
+          font-size: 20px;
+        }
+        
+        .requirements-list li,
+        .prayer-types-list li,
+        .prayer-conditions-list li,
+        .prayer-inner-conditions-list li {
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="back-btn">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+          />
+        </svg>
+      </div>
+      <div class="title">HAMA3</div>
+      <div class="home-btn">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <div class="content">
+      <h1 class="yellow-title">HAMA3 TYYPAЛYY</h1>
+
+      <h2 class="subtitle">Беш убак намаз</h2>
+
+      <p class="paragraph">
+        Аллах Таала Куранда: "Мен жин жана адамды Бир Өзүмө ибадат кылуу үчүн
+        жараттым" (Заарият, 56).
+      </p>
+
+      <p class="paragraph">Ошондой эле:</p>
+
+      <p class="quote">
+        "Намаз окууга, акыйкатта намаз белгиленген убакыттарга дайындалган" (Ниса,103)
+      </p>
+
+      <p class="paragraph">
+        Намаз - ыйман келимесинен кийинки эле парз. Жогоруда айтылгандай Аллах
+        Таала бизге Курандын көптөгөн жерлеринде бизге намаз окууну буйруган.
+        Андыктан Аллахтын буйругу бизге парз болуп саналат.
+      </p>
+
+      <p class="paragraph">
+        Пайгамбарыбыз (САЛЛАЛЛАХУ АЛЕЙХИ ВА САЛЛАМ) мындай деди: "Ислам беш
+        нерсенин үстүнө курулган: "Аллахтан башка сыйынууга татыктуу кудай жок,
+        Мухаммед анын элчиси", - деп күбөлүк беруу, намаз окуу, Рамазан айында
+        орозо кармоо, зекет беруу жана мүмкүнчүлүгү болсо ажыга баруу.
+      </p>
+
+      <h2 class="section-title">Намаз окууга киришүү</h2>
+
+      <p class="paragraph">
+        Намаз мусулман эркекке да, аялга да бирдей парз. Ошондой болсо да
+        эркектер менен аялдардын намазында айырмачылыктар бар. Мисалы, эркектер
+        колдорун киндиктин астында коюп байласа, аялдар көкүрөгүнө коюшат.
+        Ошондой эле аялдар айыз, төрөттөн кийин нифас келген учурда намаздан
+        бошотулат.
+      </p>
+
+      <h2 class="section-title">Намаз төмөнкү үч шартта парз болот</h2>
+
+      <ol class="requirements-list">
+        <li>
+          <span class="number">1</span>
+          <span class="text">Мусулман болуу</span>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <span class="text">Балагатка жетүү</span>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <span class="text">Акыл-эси ордунда болгон адам</span>
+        </li>
+      </ol>
+
+      <h2 class="section-title">Намаздын шарттары (парздары)</h2>
+
+      <p class="paragraph">
+        Намаздын шарттары (парздары) он эки: алтоосу намазды баштоодон алдыңкы
+        шарттар, калганы намаздын ичиндеги шарттар.
+      </p>
+
+      <p class="paragraph">Намаздын шарттары (парздары):</p>
+
+      <ol class="prayer-conditions-list">
+        <li>
+          <span class="number">1</span>
+          <span class="text">Намазды даарат менен окуу.</span>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <span class="text"
+            >Дененин, кийимдин жана намаз окула турган жердин нажастан таза
+            болуусу.</span
+          >
+        </li>
+        <li>
+          <span class="number">3</span>
+          <span class="text">Аврат (уяттуу) жерлери жабык болуусу.</span>
+        </li>
+        <li>
+          <span class="number">4</span>
+          <span class="text">Окула турган намаздын убактысы кирүүсү.</span>
+        </li>
+        <li>
+          <span class="number">5</span>
+          <span class="text">Кыбылага карап туруу.</span>
+        </li>
+        <li>
+          <span class="number">6</span>
+          <span class="text">Намазга ниет кылуу.</span>
+        </li>
+      </ol>
+
+      <p class="paragraph">Намаздын ичиндеги парздар:</p>
+
+      <ol class="prayer-inner-conditions-list">
+        <li>
+          <span class="number">1</span>
+          <span class="text">Эң алгач "Аллаху акбар" деп такбир айтуу.</span>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <span class="text">Тик туруу (кыям).</span>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <span class="text">Кыраат кылуу (аят окуу).</span>
+        </li>
+        <li>
+          <span class="number">4</span> <span class="text">Руку кылуу.</span>
+        </li>
+      </ol>
+
+      <p class="paragraph">
+        Көпчүлүк эркек балдар он эки жашында балагатка жетет, ал эми көпчүлүк
+        кыздар тогуз жашында балагатка жетет. Балагатка жеткенден баштап ага
+        намаз окуу парз болот.
+      </p>
+
+      <h2 class="section-title">Намаздын түрлөрү</h2>
+
+      <p class="paragraph">
+        Намаз негизинен төрткө бөлүнөт: парз, важиб, сүннөт жана нафил
+        намаздары.
+      </p>
+
+      <ol class="prayer-types-list">
+        <li>
+          <span class="number">1</span>
+          <div class="prayer-type-content">
+            <span class="prayer-type">Парз намазы</span> – милдеттүү түрдө
+            окулуучу намаз.
+          </div>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <div class="prayer-type-content">
+            <span class="prayer-type">Важиб намазы</span> – сөзсүз түрдө
+            окулуучу намаз.
+          </div>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <div class="prayer-type-content">
+            <span class="prayer-type">Сүннөт намазы</span> – Пайгамбарыбыз
+            (САЛЛАЛЛАХУ АЛЕЙХИ ВА САЛЛАМ) парз жана важиб намаздардан сырткары
+            окуган намаздар. Сүннөт намазын окуган адам сооп табат, окубаса
+            Пайгамбарыбыздын (САЛЛАЛЛАХУ АЛЕЙХИ ВА САЛЛАМ) сүннөтүн аткарбаган
+            болуп саналат.
+          </div>
+        </li>
+        <li>
+          <span class="number">4</span>
+          <div class="prayer-type-content">
+            <span class="prayer-type">Нафил намазы</span> – бул намазды окуган
+            сооп табат, окубаса күнөөкөр болбойт.
+          </div>
+        </li>
+      </ol>
+
+      <h2 class="section-title">Купуя жана жарыя окулуусу</h2>
+
+      <ol class="prayer-types-list">
+        <li>
+          <span class="number">1</span>
+          <div class="prayer-type-content">
+            Багымдат, Шам жана Куптандын (түнкү намаздар) парздарынын 1-, 2-рекетиндеги Фатиха, кошумча сүрөлөр жарыя окулат.
+          </div>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <div class="prayer-type-content">
+            Бешим жана Аср(күндүзгү намаздар) купуя окулат
+          </div>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <div class="prayer-type-content">
+            Сүннөт намаздары дайыма үн чыгарбастан, ичинен, купуя окулат.
+          </div>
+        </li>
+      </ol>
+
+      <h2 class="section-title">Беш убак намаз</h2>
+
+      <ol class="prayer-types-list">
+        <li>
+          <span class="number">1</span>
+          <div class="prayer-type-content">
+            Багымдат намазы: эки рекет сүннөт, эки рекет парз.
+          </div>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <div class="prayer-type-content">
+            Бешим намазы: төрт рекет сүннөт, төрт рекет парз жана эки рекет сүннөт.
+          </div>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <div class="prayer-type-content">
+            Аср (Дигер) намазы: төрт рекет парз.
+          </div>
+        </li>
+        <li>
+          <span class="number">4</span>
+          <div class="prayer-type-content">
+            Шам намазы: үч рекет парз, эки рекет сүннөт.
+          </div>
+        </li>
+        <li>
+          <span class="number">5</span>
+          <div class="prayer-type-content">
+            Куптан намазы: төрт рекет парз, эки рекет сүннөт. Кийин үч рекет витир.
+          </div>
+        </li>
+      </ol>
+
+      <h2 class="section-title">Намаздын убакыттары</h2>
+
+      <ol class="prayer-types-list">
+        <li>
+          <span class="number">1</span>
+          <div class="prayer-type-content">
+            Багымдат намазынын убагы: таң агаргандан баштап күн чыкканга чейинки аралык.
+          </div>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <div class="prayer-type-content">
+            Бешим намазынын убагы: күн чак түштөн бир аз оогондон баштап ар бир нерсенин көлөкөсү өзү менен барабар болгонго чейинки аралык.
+          </div>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <div class="prayer-type-content">
+            Аср намазынын убагы: бешимдин убагы бүткөндөн баштап күн батканга чейинки аралык.
+          </div>
+        </li>
+        <li>
+          <span class="number">4</span>
+          <div class="prayer-type-content">
+            Шам намазынын убагы: күн толугу менен баткандан тартып күндүн шапагы (кызылы) кеткенге чейинки аралык.
+          </div>
+        </li>
+        <li>
+          <span class="number">5</span>
+          <div class="prayer-type-content">
+            Куптан намазынын убагы: шам намазынын убагы толук бүткөндөн тартып багымдат намазынын убагы киргенге чейинки аралык.
+          </div>
+        </li>
+      </ol>
+
+      <h2 class="section-title">Эскертуу</h2>
+
+      <ol class="prayer-types-list">
+        <li>
+          <span class="number">1</span>
+          <div class="prayer-type-content">
+            Бир күндө үч убакыт бар, ошол убактарда намаз окулбайт:
+          </div>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <div class="prayer-type-content">
+            Эртең менен күн чыгып жатканда.
+          </div>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <div class="prayer-type-content">
+            Күн чак түшкө келгенде.
+          </div>
+        </li>
+        <li>
+          <span class="number">4</span>
+          <div class="prayer-type-content">
+            Күн батып жатканда (эгер аср намазын окубаган болсо күн батып жатканда окуса болот).
+          </div>
+        </li>
+      </ol>
+    </div>
+    <h2 class="section-title">Нмазды бузуучу нерселер</h2>
+
+      <ol class="prayer-types-list">
+        <li>
+          <span class="number">1</span>
+          <div class="prayer-type-content">
+            Намазда сүйлөө.
+          </div>
+        </li>
+        <li>
+          <span class="number">2</span>
+          <div class="prayer-type-content">
+            Намазда бирөөгө салам айтуу же алик алуу.
+          </div>
+        </li>
+        <li>
+          <span class="number">3</span>
+          <div class="prayer-type-content">
+            Жеп-ичүү.
+          </div>
+        </li>
+        <li>
+          <span class="number">4</span>
+          <div class="prayer-type-content">
+            Катары менен жасалган көп кыймыл-аракет.
+          </div>
+        </li>
+        <li>
+          <span class="number">5</span>
+          <div class="prayer-type-content">
+            Намазда сүйлөө.
+          </div>
+        </li>
+        <li>
+          <span class="number">6</span>
+          <div class="prayer-type-content">
+            Намазда бирөөгө салам айтуу же алик алуу.
+          </div>
+        </li>
+        <li>
+          <span class="number">7</span>
+          <div class="prayer-type-content">
+            Жеп-ичүү.
+          </div>
+        </li>
+        <li>
+          <span class="number">8</span>
+          <div class="prayer-type-content">
+            Катары менен жасалган көп кыймыл-аракет.
+          </div>
+        </li>
+        <li>
+          <span class="number">9</span>
+          <div class="prayer-type-content">
+            Кыбыладан бурулуу.
+          </div>
+        </li>
+        <li>
+          <span class="number">10</span>
+          <div class="prayer-type-content">
+            Аврат (уяттуу) жерлеринин ачылуусу.
+          </div>
+        </li>
+        <li>
+          <span class="number">11</span>
+          <div class="prayer-type-content">
+            Намазда даарат бузулуусу.
+          </div>
+        </li>
+        <li>
+          <span class="number">12</span>
+          <div class="prayer-type-content">
+            Үн чыгарып күлүү.
+          </div>
+        </li>
+        <li>
+          <span class="number">13</span>
+          <div class="prayer-type-content">
+            Талып калуу.
+          </div>
+        </li>
+        <li>
+          <span class="number">14</span>
+          <div class="prayer-type-content">
+            Эстен тануу.
+          </div>
+        </li>
+        <li>
+          <span class="number">15</span>
+          <div class="prayer-type-content">
+            Жинди болуп калуу.
+          </div>
+        </li>
+        <li>
+          <span class="number">16</span>
+          <div class="prayer-type-content">
+            Жунуб болуп калуу.
+          </div>
+        </li>   <li>
+          <span class="number">17</span>
+          <div class="prayer-type-content">
+            Намаздын ичинде ниетти алмаштыруу.
+          </div>
+        </li>
+        <li>
+          <span class="number">18</span>
+          <div class="prayer-type-content">
+            Намаздын бир парзын таштоо.
+          </div>
+        </li>
+        <li>
+          <span class="number">19</span>
+          <div class="prayer-type-content">
+            Таяммум менен намаз окуп жатканда адам сууну көрсө.
+          </div>
+        </li>
+        <li>
+          <span class="number">20</span>
+          <div class="prayer-type-content">
+            Намаз бүтө электе салам берүү.
+          </div>
+        </li>
+        <li>
+          <span class="number">21</span>
+          <div class="prayer-type-content">
+            Парз, важиб намаздардын убактысынын бүтүшү.
+          </div>
+        </li>
+        <li>
+          <span class="number">22</span>
+          <div class="prayer-type-content">
+            Намазда турган маалда масыга тартылган масх убактысынын бүтүшү.</div>
+        </li>
+        <li>
+          <span class="number">23</span>
+          <div class="prayer-type-content">
+            Масыны масх тартып кийген адамдын намазда маасысы чечилип кетсе
+          </div>
+        </li>
+        <li>
+          <span class="number">24</span>
+          <div class="prayer-type-content">
+            Катары менен жасалган көп кыймыл-аракет.
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <script>
+      // Back button functionality
+      document
+        .querySelector(".back-btn")
+        .addEventListener("click", function () {
+          window.location.href = "namaz.html";
+        });
+
+      // Home button functionality
+      document
+        .querySelector(".home-btn")
+        .addEventListener("click", function () {
+          window.location.href = "index.html";
+        });
+    </script>
+  </body>
+</html>

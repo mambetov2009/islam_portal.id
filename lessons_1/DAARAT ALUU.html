@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДААРАТ АЛУУ</title>
+    <style>
+      :root {
+        --primary-color: #1e232f;
+        --secondary-color: #2d3747;
+        --accent-color: #ffd700;
+        --text-color: #f0f0f0;
+        --light-bg: rgba(255, 215, 0, 0.1);
+        --border-radius: 12px;
+        --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--primary-color);
+        background-image: radial-gradient(
+          circle at 10% 20%,
+          var(--secondary-color) 0%,
+          var(--primary-color) 90%
+        );
+        color: var(--text-color);
+        line-height: 1.7;
+        height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        width: 100%;
+        padding: 18px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background-color: rgba(30, 35, 47, 0.98);
+        z-index: 100;
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(5px);
+      }
+
+      .nav-button {
+        width: 32px;
+        height: 32px;
+        padding: 5px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .nav-button:hover {
+        background-color: rgba(255, 215, 0, 0.2);
+        transform: scale(1.1);
+      }
+
+      .back-button,
+      .home-button {
+        width: 24px;
+        height: 24px;
+        fill: none;
+        stroke: var(--accent-color);
+        stroke-width: 2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+        letter-spacing: 1px;
+        color: var(--accent-color);
+        text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+      }
+
+      .content {
+        flex-grow: 1;
+        padding: 20px;
+        overflow-y: auto;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .section-title {
+        color: var(--accent-color);
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        margin: 25px 0 30px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent-color),
+          transparent
+        );
+        border-radius: 3px;
+      }
+
+      .subtitle {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        margin: 40px 0 25px;
+        color: var(--accent-color);
+      }
+
+      .subsection-title {
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+        margin: 35px 0 20px;
+        color: var(--accent-color);
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .subsection-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 70%;
+        width: 4px;
+        background-color: var(--accent-color);
+        border-radius: 3px;
+      }
+
+      p {
+        margin-bottom: 20px;
+        line-height: 1.7;
+        text-align: justify;
+        font-size: 16px;
+      }
+
+      .arabic {
+        font-family: "Traditional Arabic", Arial, sans-serif;
+        font-size: 18px;
+        font-weight: normal;
+        color: var(--accent-color);
+      }
+
+      /* Стили для блоков с инструкциями */
+      .instruction-block {
+        margin: 30px 0;
+        border-radius: var(--border-radius);
+        padding: 20px;
+        background-color: var(--light-bg);
+        box-shadow: var(--box-shadow);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+
+      .instruction-block:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+      }
+
+      .image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .instruction-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--border-radius);
+        transition: transform 0.3s ease;
+      }
+
+      .instruction-image:hover {
+        transform: scale(1.02);
+      }
+
+      .instruction-title {
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 15px;
+        color: var(--accent-color);
+      }
+
+      .instruction-text {
+        font-size: 16px;
+        line-height: 1.7;
+        text-align: justify;
+        margin-bottom: 0;
+      }
+
+      /* Нумерованные шаги */
+      .step-number {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      /* Анимации */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content > * {
+        animation: fadeIn 0.6s ease-out forwards;
+        opacity: 0;
+      }
+
+      .content > *:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .content > *:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .content > *:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .content > *:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .content > *:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .content > *:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+      .content > *:nth-child(7) {
+        animation-delay: 0.7s;
+      }
+      .content > *:nth-child(8) {
+        animation-delay: 0.8s;
+      }
+      .content > *:nth-child(9) {
+        animation-delay: 0.9s;
+      }
+
+      /* Скроллбар */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--secondary-color);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ffc600;
+      }
+
+      /* Кнопка "Наверх" */
+      .scroll-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 99;
+      }
+
+      .scroll-top.visible {
+        opacity: 0.9;
+        visibility: visible;
+      }
+
+      .scroll-top:hover {
+        opacity: 1;
+        transform: translateY(-3px);
+      }
+
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .content {
+          padding: 15px;
+        }
+
+        .section-title {
+          font-size: 24px;
+          margin: 20px 0 25px;
+        }
+
+        .subtitle {
+          font-size: 22px;
+          margin: 30px 0 20px;
+        }
+
+        .instruction-block {
+          padding: 15px;
+          margin: 25px 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header {
+          padding: 15px;
+        }
+
+        .title {
+          font-size: 20px;
+        }
+
+        .nav-button {
+          width: 28px;
+          height: 28px;
+        }
+
+        .back-button,
+        .home-button {
+          width: 20px;
+          height: 20px;
+        }
+
+        .section-title {
+          font-size: 22px;
+        }
+
+        .subtitle {
+          font-size: 20px;
+        }
+
+        p,
+        .instruction-text {
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <a href="daraat.html" class="nav-button">
+        <svg
+          class="back-button"
+          viewBox="0 0 24 24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </a>
+      <div class="title">ДААРАТ АЛУУ</div>
+      <a href="index.html" class="nav-button">
+        <svg
+          class="home-button"
+          viewBox="0 0 24 24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="content">
+      <h1 class="section-title">ДААРАТ АЛУУ</h1>
+
+      <h2 class="subtitle">Даарат</h2>
+
+      <p>
+        (<span class="arabic">الوضوء</span>) - сөздүк мааниси – таза болуу,
+        диндеги мааниси – бетти, эки колду чыканак менен бирге, эки бутту томук
+        (кызыл ашык) менен кошо жуу жана башка масх тартуу түрүндө жүзөгө ашкан
+        өзгөчө тазалык.
+      </p>
+
+      <p>Даарат «парз», «сүннөт» жана «мустахаб» амалдардан турат.</p>
+
+      <p>
+        Дааратттын парздары: бетти, эки колду чыканак менен бирге, эки бутту
+        томук (кызыл ашык) менен кошо жуу жана баштын төрттөн бир бөлүгүн сылоо.
+        Дааратттын парздарынан бири аткарылбаса, анда ал даарат жараксыз болуп
+        эсептелет.
+      </p>
+
+      <h2 class="subsection-title">Ниет жана «бисмилла»</h2>
+
+      <p>
+        Даарат алуудан мурда ниет (жүрөктөн каалоо) кылуу жана «Бисмиллаахир
+        Рохмаанир Рохиим» деп айтуу сүннөт. Мындан кийин төмөнкү амалдар
+        аткарылат:
+      </p>
+
+      <div class="instruction-block">
+        <div class="image-container">
+          <img
+            src="https://azan.kz/namaz-data/img/taharat/d.png"
+            alt="Человек моет руки"
+            class="instruction-image"
+          />
+        </div>
+        <h3 class="instruction-title">
+          <span class="step-number">1</span>Беш маңжаны жуу
+        </h3>
+        <p class="instruction-text">
+          Колду билекке чейин жуу. Даарат колду билекке чейин жуу менен
+          башталат. Жууган кезде так үч жолудан жуу жана оң жактан баштоо
+          сүннөт.
+        </p>
+      </div>
+
+      <!-- Дополнительные 9 картинок с надписями -->
+      <div class="instruction-block">
+        <div class="image-container">
+          <img
+            src="./WhatsApp Image 2025-05-14 at 00.07.57.jpeg"
+            alt="Оозду чайкоо"
+            class="instruction-image"
+          />
+        </div>
+        <h3 class="instruction-title">
+          <span class="step-number">2</span>Оозду чайкоо
+        </h3>
+        <p class="instruction-text">
+          Кийинки амал оозду чайкоо. Бул амалды уч иреет кайталоо суннот.Оозго
+          суу он кол менен алынат.
+        </p>
+      </div>
+
+      <div class="instruction-block">
+        <div class="image-container">
+          <img
+            src="./WhatsApp Image 2025-05-14 at 00.19.36.jpeg"
+            alt="Мурунга суу алуу"
+            class="instruction-image"
+          />
+        </div>
+        <h3 class="instruction-title">
+          <span class="step-number">3</span>Мурунга суу алуу
+        </h3>
+        <p class="instruction-text">
+          Мурунга он кол мене суу алып, сууну дем менен тее каншарга жеткире
+          тартып сол кол менен чимкируу керек. Бул амалды уч ирет кайталоо
+          суннот
+        </p>
+      </div>
+
+      <div class="instruction-block">
+        <div class="image-container">
+          <img
+            src="./WhatsApp Image 2025-05-14 at 00.23.49.jpeg"
+            alt="Бетти жуу"
+            class="instruction-image"
+          />
+        </div>
+        <h3 class="instruction-title">
+          <span class="step-number">4</span>Бетти жуу
+        </h3>
+        <p class="instruction-text">
+          Бет - узунунан: чач чыккан жерден ээктин астына чейин, туурасынан: эки
+          кулактын аралыгы болуп эсептелет. Бетти үч жолу жуу сүннөт. Эгер
+          сакалы коюу болсо сакалдын астын (терини) жуу парз эмес, ал эми сакал
+          суюк болсо сакалдын астындагы териге суу жеткирүү парз.
+        </p>
+      </div>
+
+      <div class="instruction-block">
+        <div class="image-container">
+          <img
+            src="./WhatsApp Image 2025-05-14 at 00.26.23.jpeg"
+            alt="Колдорду чыканакка чейин жуу"
+            class="instruction-image"
+          />
+        </div>
+        <h3 class="instruction-title">
+          <span class="step-number">5</span>Колдорду чыканакка чейин жуу
+        </h3>
+        <p class="instruction-text">
+          Эки кол манжалардын учтарынан баштап чыканактан өткөрө жуулат.
+          Даараттын башында беш манжаны жуу сүннөт болсо, бул жерде парз. Оң
+          колдон баштоо жана үч ирет жуу сүннөт.
+        </p>
+      </div>
+
+      <div class="instruction-block">
+        <div class="image-container">
+          <img
+            src="./WhatsApp Image 2025-05-14 at 00.28.37.jpeg"
+            alt="Бакша масх тартуу"
+            class="instruction-image"
+          />
+        </div>
+        <h3 class="instruction-title">
+          <span class="step-number">6</span>Бакша масх тартуу
+        </h3>
+        <p class="instruction-text">
+          Эки колду жуугандан соң башка, кулактарга жана моюнга масх тартылат.
+          Эки кол суулангандан кийин үч манжа (чыпалак, аты жок жана ортон
+          манжалары) учма-уч келтирилип, маңдайдан артты көздөй тартылат, кайра
+          желке жактан маңдайды көздөй алакан менен баштын каптал тарабы
+          сыланат. Кийин сөөмөй менен кулак ичи, баш бармак менен кулак сырты
+          сүртүлөт. Кийин алакандын сырты менен моюнга масх тартылат.
+        </p>
+      </div>
+
+      <div class="instruction-block">
+        <div class="image-container">
+          <img
+            src="./WhatsApp Image 2025-05-14 at 00.30.44.jpeg"
+            alt="Эки бутту жуу"
+            class="instruction-image"
+          />
+        </div>
+        <h3 class="instruction-title">
+          <span class="step-number">7</span>Эки бутту жуу
+        </h3>
+        <p class="instruction-text">
+          Акыркы амал эки бутту кызыл ашык менен кошуп жуу. Оболу оң, андан
+          кийин сол бутту жуу жана үч ирет жуу сүннөт.
+        </p>
+      </div>
+
+      <div class="instruction-block">
+        <h3 class="instruction-title"><span class="step-number">8</span>Дуа</h3>
+        <p class="instruction-text">
+          Даарат алып бүткөндөн кийин «Ашхаду аллаа илааха иллаллооху вахдахуу
+          лаа шарика лах, ва ашхаду анна Мухаммадан ъабдухуу ва росуулух»,
+          «Аллоохум-мажъалнии минат тавваабиина важъалнии минал мутатоххириин»
+          деп айтуу сооптуу болот.
+        </p>
+      </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTopBtn">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Кнопка "Наверх"
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        window.addEventListener("scroll", function () {
+          if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add("visible");
+          } else {
+            scrollTopBtn.classList.remove("visible");
+          }
+        });
+
+        scrollTopBtn.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+        // Плавная прокрутка для внутренних ссылок
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // Анимация при скролле
+        const animateOnScroll = function () {
+          const elements = document.querySelectorAll(".instruction-block");
+          elements.forEach((el) => {
+            const elementPosition = el.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elementPosition < windowHeight - 100) {
+              el.style.opacity = "1";
+              el.style.transform = "translateY(0)";
+            }
+          });
+        };
+
+        // Инициализация анимации
+        window.addEventListener("scroll", animateOnScroll);
+        animateOnScroll(); // Запустить при загрузке
+
+        // Адаптация высоты контента
+        function adjustContentHeight() {
+          const headerHeight = document.querySelector(".header").offsetHeight;
+          const windowHeight = window.innerHeight;
+          const content = document.querySelector(".content");
+
+          content.style.minHeight = `${windowHeight - headerHeight}px`;
+        }
+
+        adjustContentHeight();
+        window.addEventListener("resize", adjustContentHeight);
+      });
+    </script>
+  </body>
+</html>

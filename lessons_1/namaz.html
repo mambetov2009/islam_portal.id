@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAMA3</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #1e2433;
+        color: white;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 10px;
+        position: relative;
+        border-bottom: 1px solid #2a3142;
+      }
+
+      .back-btn {
+        position: absolute;
+        left: 15px;
+        cursor: pointer;
+      }
+
+      .home-btn {
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      .prayer-list {
+        padding: 0;
+        list-style: none;
+      }
+
+      .prayer-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 15px;
+        border-bottom: 1px solid #2a3142;
+        cursor: pointer;
+      }
+
+      .prayer-number {
+        margin-right: 20px;
+        font-weight: normal;
+      }
+
+      .prayer-name {
+        flex-grow: 1;
+        font-weight: normal;
+        font-size: 16px;
+      }
+
+      .arrow {
+        color: #777;
+      }
+
+      /* Icons */
+      .icon {
+        width: 24px;
+        height: 24px;
+        fill: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="back-btn">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+          />
+        </svg>
+      </div>
+      <div class="title">Намаз</div>
+      <div class="home-btn">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <ul class="prayer-list">
+      <li class="prayer-item" onclick="navigateTo('namaz-tuuraluu.html')">
+        <span class="prayer-number">1.</span>
+        <span class="prayer-name">Намаз тууралуу</span>
+        <span class="arrow">›</span>
+      </li>
+      <li class="prayer-item" onclick="navigateTo('besh-ubak-namazy.html')">
+        <span class="prayer-number">2.</span>
+        <span class="prayer-name">Беш убак намазы</span>
+        <span class="arrow">›</span>
+      </li>
+      <li class="prayer-item" onclick="navigateTo('juma-namazy.html')">
+        <span class="prayer-number">3.</span>
+        <span class="prayer-name">Жума намазы</span>
+        <span class="arrow">›</span>
+      </li>
+    </ul>
+
+    <script>
+      function navigateTo(url) {
+        window.location.href = url;
+      }
+
+      // Back button functionality
+      document
+        .querySelector(".back-btn")
+        .addEventListener("click", function () {
+          window.history.back();
+        });
+
+      // Home button functionality
+      document
+        .querySelector(".home-btn")
+        .addEventListener("click", function () {
+          window.location.href = "index.html";
+        });
+    </script>
+  </body>
+</html>

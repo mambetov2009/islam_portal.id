@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Намаз</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #1e2126;
+        color: #ffffff;
+        min-height: 100vh;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        background-color: #1e2126;
+        position: relative;
+        border-bottom: 1px solid #2e3136;
+      }
+
+      .back-button {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+      }
+
+      .title {
+        flex-grow: 1;
+        text-align: center;
+        font-size: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .home-button {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+      }
+
+      .menu-container {
+        padding: 8px 0;
+      }
+
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+        border-bottom: 1px solid #2e3136;
+        cursor: pointer;
+      }
+
+      .menu-item:active {
+        background-color: #2e3136;
+      }
+
+      .menu-text {
+        font-size: 16px;
+        color: #ffffff;
+      }
+
+      .arrow {
+        color: #7d8186;
+        font-size: 20px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <a href="./namaz.html" class="back-button">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+      </a>
+      <div class="title">НАМАЗ</div>
+      <a href="./index.html" class="home-button">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="menu-container">
+      <a
+        href="https://youtu.be/_GocTE3MeCk?si=HY1gyneRvGdR1me7"
+        class="menu-item"
+      >
+        <div class="menu-text">1.1 Бағымдаттың сүннөт намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/cPolujWLA44?si=UqbfIwBXw3YKKjHZ"
+        class="menu-item"
+      >
+        <div class="menu-text">1.2 Бағымдаттың парз намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/h7AyZjn85rQ?si=h0JcCOtSpF2p8aAf"
+        class="menu-item"
+      >
+        <div class="menu-text">2.1 Бешимдин алғачкы сүннөт намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/9ZlB84rqi5o?si=hrs_rXcMliMMhcQx"
+        class="menu-item"
+      >
+        <div class="menu-text">2.2 Бешимдин парз намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/_GocTE3MeCk?si=ZSoPK_UiI1-5k5pN"
+        class="menu-item"
+      >
+        <div class="menu-text">2.3 Бешимдин акыркы сүннөт намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/rb6W2bsG-lc?si=KfhXUEVKVHLVZEVX"
+        class="menu-item"
+      >
+        <div class="menu-text">3. Аср намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/c6HY73YO7ak?si=FTOnBMiDRB_8Aoyc"
+        class="menu-item"
+      >
+        <div class="menu-text">4.1 Шамдын парз намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/_GocTE3MeCk?si=8pYI21JNLNO0QQ4v"
+        class="menu-item"
+      >
+        <div class="menu-text">4.2 Шамдын сүннөт намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/bjP31-QBqXE?si=srZvpRDI4AxFVvgy"
+        class="menu-item"
+      >
+        <div class="menu-text">5.1 Куптандын парз намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/_GocTE3MeCk?si=8pYI21JNLNO0QQ4v"
+        class="menu-item"
+      >
+        <div class="menu-text">5.2 Куптандын сүннөт намазы</div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a
+        href="https://youtu.be/cfpqrEV-hrA?si=FCJFsGKPMom3WKEL"
+        class="menu-item"
+      >
+        <div class="menu-text">5.3 Витир намазы</div>
+        <div class="arrow">›</div>
+      </a>
+    </div>
+
+    <script>
+      // Handle back button click
+      document
+        .querySelector(".back-button")
+        .addEventListener("click", function () {
+          // You can replace this with a specific URL
+          window.history.back();
+        });
+
+      // Handle home button click
+      document
+        .querySelector(".home-button")
+        .addEventListener("click", function () {
+          // Navigate to home page
+          window.location.href = "https://example.com/home";
+        });
+
+      // You can add more JavaScript functionality as needed
+    </script>
+  </body>
+</html>

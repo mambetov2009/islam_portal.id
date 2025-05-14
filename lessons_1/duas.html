@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>30 Красивых Дуа с Переводом</title>
+    <style>
+      :root {
+        --primary: #4361ee;
+        --secondary: #3a0ca3;
+        --accent: #f72585;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --text: #2b2d42;
+        --bg: #f8f9fa;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding-bottom: 60px;
+      }
+
+      .header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .search-container {
+        margin: 20px 0;
+        position: relative;
+      }
+
+      #search {
+        width: 100%;
+        padding: 12px 20px;
+        border: 2px solid #e9ecef;
+        border-radius: 50px;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      #search:focus {
+        border-color: var(--primary);
+        box-shadow: 0 2px 12px rgba(67, 97, 238, 0.2);
+      }
+
+      .dua-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .dua-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+      }
+
+      .dua-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      .dua-number {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--accent);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+
+      .dua-content {
+        padding: 20px;
+      }
+
+      .dua-arabic {
+        font-size: 1.4rem;
+        text-align: right;
+        direction: rtl;
+        margin-bottom: 15px;
+        color: var(--secondary);
+        line-height: 1.8;
+        font-weight: 500;
+      }
+
+      .dua-translation {
+        margin-bottom: 15px;
+        color: var(--text);
+        font-size: 1rem;
+      }
+
+      .dua-reference {
+        font-size: 0.85rem;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      .copy-btn {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background-color: var(--secondary);
+      }
+
+      .copy-btn i {
+        font-size: 1rem;
+      }
+
+      .favorite-btn {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #adb5bd;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .favorite-btn.active {
+        color: var(--accent);
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 40px 0;
+        color: #6c757d;
+        display: none;
+      }
+
+      .tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .tab-btn {
+        padding: 10px 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #6c757d;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .tab-btn.active {
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      .tab-btn.active::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary);
+        border-radius: 3px 3px 0 0;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .dua-arabic {
+          font-size: 1.2rem;
+        }
+
+        .dua-content {
+          padding: 15px;
+        }
+      }
+
+      /* Анимации */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dua-card {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      /* Иконки */
+      .material-icons {
+        font-family: "Material Icons";
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: "liga";
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <h1>30 Красивых Дуа</h1>
+      <p>С арабским текстом и переводом на русский</p>
+    </div>
+
+    <div class="container">
+      <div class="search-container">
+        <input
+          type="text"
+          id="search"
+          placeholder="Поиск дуа..."
+          aria-label="Поиск дуа"
+        />
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="all">Все</button>
+        <button class="tab-btn" data-tab="favorites">Избранное</button>
+      </div>
+
+      <div class="tab-content active" id="all-duas">
+        <div class="dua-list" id="dua-container">
+          <!-- Дуа будут добавлены через JavaScript -->
+        </div>
+        <div class="no-results" id="no-results">
+          <p>Ничего не найдено. Попробуйте другой запрос.</p>
+        </div>
+      </div>
+
+      <div class="tab-content" id="favorite-duas">
+        <div class="dua-list" id="favorites-container">
+          <p style="text-align: center; padding: 40px 0; color: #6c757d">
+            Пока нет избранных дуа
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Массив с 30 дуа
+      const duas = [
+        {
+          id: 1,
+          arabic:
+            "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+          translation:
+            "Господь наш! Даруй нам добро в этом мире и добро в Последней жизни и защити нас от мучений в Огне.",
+          reference: "Коран 2:201",
+        },
+        {
+          id: 2,
+          arabic:
+            "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ",
+          translation:
+            "Господи! Сделай меня и моих потомков совершающими молитву. Господь наш! Прими мою мольбу.",
+          reference: "Коран 14:40",
+        },
+        {
+          id: 3,
+          arabic:
+            "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ",
+          translation:
+            "Господь наш! Прости меня, моих родителей и верующих в тот день, когда будет представлен счет.",
+          reference: "Коран 14:41",
+        },
+        {
+          id: 4,
+          arabic:
+            "رَبِّ هَبْ لِي مِنْ لَدُنْكَ ذُرِّيَّةً طَيِّبَةً ۖ إِنَّكَ سَمِيعُ الدُّعَاءِ",
+          translation:
+            "Господи! Даруй мне от Тебя прекрасное потомство. Воистину, Ты слышишь мольбу.",
+          reference: "Коран 3:38",
+        },
+        {
+          id: 5,
+          arabic:
+            "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً ۚ إِنَّكَ أَنْتَ الْوَهَّابُ",
+          translation:
+            "Господь наш! Не уклоняй наши сердца в сторону после того, как Ты наставил нас на прямой путь, и даруй нам милость от Себя, ведь Ты — Дарующий.",
+          reference: "Коран 3:8",
+        },
+        {
+          id: 6,
+          arabic:
+            "رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ",
+          translation:
+            "Господь наш! Излей на нас терпение, укрепи наши стопы и помоги нам одержать победу над неверующими людьми.",
+          reference: "Коран 2:250",
+        },
+        {
+          id: 7,
+          arabic:
+            "رَبَّنَا عَلَيْكَ تَوَكَّلْنَا وَإِلَيْكَ أَنَبْنَا وَإِلَيْكَ الْمَصِيرُ",
+          translation:
+            "Господь наш! На Тебя одного мы уповаем, к Тебе одному обращаемся и к Тебе предстоит прибытие.",
+          reference: "Коран 60:4",
+        },
+        {
+          id: 8,
+          arabic:
+            "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي يَفْقَهُوا قَوْلِي",
+          translation:
+            "Господи! Раскрой для меня мою грудь, облегчи мою миссию и развяжи узел на моем языке, чтобы они могли понять мою речь.",
+          reference: "Коран 20:25-28",
+        },
+        {
+          id: 9,
+          arabic: "رَبِّ زِدْنِي عِلْمًا",
+          translation: "Господи! Увеличь мои знания.",
+          reference: "Коран 20:114",
+        },
+        {
+          id: 10,
+          arabic:
+            "رَبَّنَا مَا خَلَقْتَ هَٰذَا بَاطِلًا سُبْحَانَكَ فَقِنَا عَذَابَ النَّارِ",
+          translation:
+            "Господь наш! Ты не сотворил это понапрасну. Пречист Ты! Защити же нас от мучений в Огне.",
+          reference: "Коран 3:191",
+        },
+        {
+          id: 11,
+          arabic:
+            "رَبَّنَا إِنَّنَا آمَنَّا فَاغْفِرْ لَنَا ذُنُوبَنَا وَقِنَا عَذَابَ النَّارِ",
+          translation:
+            "Господь наш! Воистину, мы уверовали. Прости же нам наши грехи и защити нас от мучений в Огне.",
+          reference: "Коран 3:16",
+        },
+        {
+          id: 12,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ وَمِنْ عَذَابِ الْقَبْرِ وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ",
+          translation:
+            "О Аллах! Я прибегаю к Тебе от мучений в Аду, от мучений в могиле, от искушений жизни и смерти и от зла искушения Антихриста.",
+          reference: "Муслим",
+        },
+        {
+          id: 13,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ وَقَهْرِ الرِّجَالِ",
+          translation:
+            "О Аллах! Я прибегаю к Тебе от тревоги и печали, от слабости и лени, от скупости и трусости, от бремени долга и притеснения людей.",
+          reference: "Бухари",
+        },
+        {
+          id: 14,
+          arabic:
+            "اللَّهُمَّ اغْفِرْ لِي ذَنْبِي وَوَسِّعْ لِي فِي دَارِي وَبَارِكْ لِي فِي رِزْقِي",
+          translation:
+            "О Аллах! Прости мой грех, расширь мой дом и благослови мой удел.",
+          reference: "Тирмизи",
+        },
+        {
+          id: 15,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا",
+          translation:
+            "О Аллах! Я прошу у Тебя полезного знания, благого удела и принимаемых деяний.",
+          reference: "Ибн Маджа",
+        },
+        {
+          id: 16,
+          arabic:
+            "اللَّهُمَّ أَصْلِحْ لِي دِينِيَ الَّذِي هُوَ عِصْمَةُ أَمْرِي، وَأَصْلِحْ لِي دُنْيَايَ الَّتِي فِيهَا مَعَاشِي، وَأَصْلِحْ لِي آخِرَتِي الَّتِي فِيهَا مَعَادِي، وَاجْعَلِ الْحَيَاةَ زِيَادَةً لِي فِي كُلِّ خَيْرٍ، وَاجْعَلِ الْمَوْتَ رَاحَةً لِي مِنْ كُلِّ شَرٍّ",
+          translation:
+            "О Аллах! Устрой для меня мою религию, которая является защитой моих дел, устрой для меня мой мир, в котором моя жизнь, устрой для меня мою Последнюю жизнь, в которой мое возвращение. Сделай жизнь прибавлением для меня во всяком благе и сделай смерть отдыхом для меня от всякого зла.",
+          reference: "Муслим",
+        },
+        {
+          id: 17,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",
+          translation:
+            "О Аллах! Я прошу у Тебя руководства, богобоязненности, целомудрия и богатства.",
+          reference: "Муслим",
+        },
+        {
+          id: 18,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ زَوَالِ نِعْمَتِكَ وَتَحَوُّلِ عَافِيَتِكَ وَفُجَاءَةِ نِقْمَتِكَ وَجَمِيعِ سَخَطِكَ",
+          translation:
+            "О Аллах! Я прибегаю к Тебе от исчезновения Твоей милости, изменения Твоего благополучия, внезапности Твоего наказания и всего, что вызывает Твой гнев.",
+          reference: "Муслим",
+        },
+        {
+          id: 19,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْبُخْلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ، وَأَعُوذُ بِكَ مِنْ أَنْ أُرَدَّ إِلَى أَرْذَلِ الْعُمُرِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الدُّنْيَا وَعَذَابِ الْقَبْرِ",
+          translation:
+            "О Аллах! Я прибегаю к Тебе от скупости, и я прибегаю к Тебе от трусости, и я прибегаю к Тебе от того, чтобы быть возвращенным к самому презренному возрасту, и я прибегаю к Тебе от искушения этого мира и наказания могилы.",
+          reference: "Бухари",
+        },
+        {
+          id: 20,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ مَا عَمِلْتُ وَمِنْ شَرِّ مَا لَمْ أَعْمَلْ",
+          translation:
+            "О Аллах! Я прибегаю к Тебе от зла того, что я совершил, и от зла того, что я не совершил.",
+          reference: "Муслим",
+        },
+        {
+          id: 21,
+          arabic:
+            "اللَّهُمَّ اجْعَلْنِي مِنَ الَّذِينَ إِذَا أَحْسَنُوا اسْتَبْشَرُوا وَإِذَا أَسَاءُوا اسْتَغْفَرُوا",
+          translation:
+            "О Аллах! Сделай меня одним из тех, кто, когда делает добро, радуется, а когда совершает грех, просит прощения.",
+          reference: "Ибн Маджа",
+        },
+        {
+          id: 22,
+          arabic: "اللَّهُمَّ حَاسِبْنِي حِسَابًا يَسِيرًا",
+          translation: "О Аллах! Рассчитай меня легким расчетом.",
+          reference: "Ахмад",
+        },
+        {
+          id: 23,
+          arabic: "اللَّهُمَّ أَصْلِحْ وُلَاةَ أُمُورِنَا",
+          translation: "О Аллах! Направь наших правителей на путь истинный.",
+          reference: "Абу Дауд",
+        },
+        {
+          id: 24,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكَسَلِ وَالْهَرَمِ وَالْمَأْثَمِ وَالْمَغْرَمِ",
+          translation:
+            "О Аллах! Я прибегаю к Тебе от лени, старости, греха и долгов.",
+          reference: "Бухари",
+        },
+        {
+          id: 25,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ حُبَّكَ وَحُبَّ مَنْ يُحِبُّكَ وَحُبَّ عَمَلٍ يُقَرِّبُنِي إِلَى حُبِّكَ",
+          translation:
+            "О Аллах! Я прошу у Тебя Твоей любви, любви тех, кто любит Тебя, и любви к деяниям, которые приблизят меня к Твоей любви.",
+          reference: "Тирмизи",
+        },
+        {
+          id: 26,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ فِعْلَ الْخَيْرَاتِ وَتَرْكَ الْمُنْكَرَاتِ وَحُبَّ الْمَسَاكِينِ وَأَنْ تَغْفِرَ لِي وَتَرْحَمَنِي",
+          translation:
+            "О Аллах! Я прошу у Тебя совершения благих дел, оставления порицаемого, любви к бедным, а также чтобы Ты простил меня и помиловал.",
+          reference: "Тирмизи",
+        },
+        {
+          id: 27,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنَ الْخَيْرِ كُلِّهِ عَاجِلِهِ وَآجِلِهِ مَا عَلِمْتُ مِنْهُ وَمَا لَمْ أَعْلَمْ، وَأَعُوذُ بِكَ مِنَ الشَّرِّ كُلِّهِ عَاجِلِهِ وَآجِلِهِ مَا عَلِمْتُ مِنْهُ وَمَا لَمْ أَعْلَمْ",
+          translation:
+            "О Аллах! Я прошу у Тебя всего благого, скорого и отдаленного, что я знаю и чего не знаю. И я прибегаю к Тебе от всего злого, скорого и отдаленного, что я знаю и чего не знаю.",
+          reference: "Ибн Маджа",
+        },
+        {
+          id: 28,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ",
+          translation: "О Аллах! Я прошу у Тебя Рая и прибегаю к Тебе от Огня.",
+          reference: "Абу Дауд",
+        },
+        {
+          id: 29,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ وَالْعَزِيمَةَ عَلَى الرُّشْدِ",
+          translation:
+            "О Аллах! Я прошу у Тебя стойкости в делах и решимости на пути истины.",
+          reference: "Ахмад",
+        },
+        {
+          id: 30,
+          arabic:
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ رِضَاكَ وَالْجَنَّةَ وَأَعُوذُ بِكَ مِنْ سَخَطِكَ وَالنَّارِ",
+          translation:
+            "О Аллах! Я прошу у Тебя Твоего довольства и Рая и прибегаю к Тебе от Твоего гнева и Огня.",
+          reference: "Тирмизи",
+        },
+      ];
+
+      // DOM элементы
+      const duaContainer = document.getElementById("dua-container");
+      const favoritesContainer = document.getElementById("favorites-container");
+      const searchInput = document.getElementById("search");
+      const noResults = document.getElementById("no-results");
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      // Загрузка избранных дуа из localStorage
+      let favoriteDuas = JSON.parse(localStorage.getItem("favoriteDuas")) || [];
+
+      // Отображение всех дуа
+      function renderDuas(duasToRender, container) {
+        container.innerHTML = "";
+
+        if (duasToRender.length === 0 && container === favoritesContainer) {
+          container.innerHTML =
+            '<p style="text-align: center; padding: 40px 0; color: #6c757d;">Пока нет избранных дуа</p>';
+          return;
+        }
+
+        if (duasToRender.length === 0) {
+          noResults.style.display = "block";
+          return;
+        } else {
+          noResults.style.display = "none";
+        }
+
+        duasToRender.forEach((dua) => {
+          const isFavorite = favoriteDuas.includes(dua.id);
+          const duaCard = document.createElement("div");
+          duaCard.className = "dua-card";
+          duaCard.innerHTML = `
+                    <div class="dua-number">${dua.id}</div>
+                    <div class="dua-content">
+                        <div class="dua-arabic">${dua.arabic}</div>
+                        <div class="dua-translation">${dua.translation}</div>
+                        <div class="dua-reference">${dua.reference}</div>
+                        <button class="copy-btn" data-dua-id="${dua.id}">
+                            <i class="material-icons">content_copy</i> Копировать
+                        </button>
+                    </div>
+                    <button class="favorite-btn ${
+                      isFavorite ? "active" : ""
+                    }" data-dua-id="${dua.id}">
+                        <i class="material-icons">${
+                          isFavorite ? "favorite" : "favorite_border"
+                        }</i>
+                    </button>
+                `;
+          container.appendChild(duaCard);
+        });
+
+        // Добавляем обработчики событий для новых элементов
+        addEventListeners();
+      }
+
+      // Поиск дуа
+      function searchDuas() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredDuas = duas.filter(
+          (dua) =>
+            dua.translation.toLowerCase().includes(searchTerm) ||
+            dua.arabic.toLowerCase().includes(searchTerm) ||
+            dua.reference.toLowerCase().includes(searchTerm)
+        );
+        renderDuas(filteredDuas, duaContainer);
+      }
+
+      // Переключение вкладок
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tabId = btn.getAttribute("data-tab");
+
+          // Обновляем активные вкладки
+          tabBtns.forEach((b) => b.classList.remove("active"));
+          tabContents.forEach((c) => c.classList.remove("active"));
+
+          btn.classList.add("active");
+          document.getElementById(`${tabId}-duas`).classList.add("active");
+
+          // Если выбрана вкладка избранного, обновляем ее содержимое
+          if (tabId === "favorites") {
+            const favoriteDuasList = duas.filter((dua) =>
+              favoriteDuas.includes(dua.id)
+            );
+            renderDuas(favoriteDuasList, favoritesContainer);
+          }
+        });
+      });
+
+      // Добавление/удаление из избранного
+      function toggleFavorite(duaId) {
+        const index = favoriteDuas.indexOf(duaId);
+        if (index === -1) {
+          favoriteDuas.push(duaId);
+        } else {
+          favoriteDuas.splice(index, 1);
+        }
+        localStorage.setItem("favoriteDuas", JSON.stringify(favoriteDuas));
+      }
+
+      // Копирование дуа
+      function copyDua(duaId) {
+        const dua = duas.find((d) => d.id === duaId);
+        if (dua) {
+          const textToCopy = `${dua.arabic}\n\n${dua.translation}\n\n${dua.reference}`;
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            alert("Дуа скопировано в буфер обмена!");
+          });
+        }
+      }
+
+      // Добавление обработчиков событий
+      function addEventListeners() {
+        // Избранное
+        document.querySelectorAll(".favorite-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const duaId = parseInt(this.getAttribute("data-dua-id"));
+            toggleFavorite(duaId);
+
+            // Обновляем иконку
+            const icon = this.querySelector("i");
+            if (this.classList.contains("active")) {
+              this.classList.remove("active");
+              icon.textContent = "favorite_border";
+            } else {
+              this.classList.add("active");
+              icon.textContent = "favorite";
+            }
+
+            // Если мы на вкладке избранного, обновляем список
+            if (
+              document
+                .getElementById("favorite-duas")
+                .classList.contains("active")
+            ) {
+              const favoriteDuasList = duas.filter((dua) =>
+                favoriteDuas.includes(dua.id)
+              );
+              renderDuas(favoriteDuasList, favoritesContainer);
+            }
+          });
+        });
+
+        // Копирование
+        document.querySelectorAll(".copy-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const duaId = parseInt(this.getAttribute("data-dua-id"));
+            copyDua(duaId);
+          });
+        });
+      }
+
+      // Инициализация
+      renderDuas(duas, duaContainer);
+
+      // Поиск при вводе
+      searchInput.addEventListener("input", searchDuas);
+
+      // Поиск при загрузке страницы (если есть хэш)
+      if (window.location.hash) {
+        const searchTerm = decodeURIComponent(
+          window.location.hash.substring(1)
+        );
+        searchInput.value = searchTerm;
+        searchDuas();
+      }
+    </script>
+  </body>
+</html>

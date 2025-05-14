@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДААРАТ ТУУРАЛУУ</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #1e232f;
+        background-image: radial-gradient(
+          circle at 10% 20%,
+          #2d3747 0%,
+          #1e232f 90%
+        );
+        color: #f0f0f0;
+        height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.6;
+      }
+
+      .header {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background-color: rgba(30, 35, 47, 0.95);
+        z-index: 10;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .back-button,
+      .home-button {
+        width: 28px;
+        height: 28px;
+        fill: none;
+        stroke: #ffd700;
+        stroke-width: 2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .back-button:hover,
+      .home-button:hover {
+        transform: scale(1.1);
+        stroke: white;
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 1.5px;
+        color: #ffd700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .content {
+        flex-grow: 1;
+        padding: 15px 25px 40px;
+        overflow-y: auto;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .section-title {
+        color: #ffd700;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        margin: 25px 0 40px;
+        letter-spacing: 1px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        border-radius: 3px;
+      }
+
+      .subtitle {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 35px 0 25px;
+        color: #ffd700;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .subtitle::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 70%;
+        width: 5px;
+        background-color: #ffd700;
+        border-radius: 3px;
+      }
+
+      ol {
+        padding-left: 30px;
+        margin-bottom: 35px;
+        counter-reset: item;
+      }
+
+      ol li {
+        margin-bottom: 20px;
+        line-height: 1.6;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      ol li::before {
+        counter-increment: item;
+        content: counter(item);
+        position: absolute;
+        left: -30px;
+        top: 0;
+        color: #ffd700;
+        font-weight: bold;
+        font-size: 18px;
+        background-color: rgba(255, 215, 0, 0.2);
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      li::marker {
+        font-weight: bold;
+      }
+
+      .steps-container {
+        background-color: rgba(255, 215, 0, 0.1);
+        border-left: 4px solid #ffd700;
+        border-radius: 0 8px 8px 0;
+        padding: 20px;
+        margin: 30px 0;
+      }
+
+      .steps-container h3 {
+        color: #ffd700;
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+
+      .steps-container ol {
+        padding-left: 20px;
+      }
+
+      .steps-container ol li {
+        margin-bottom: 15px;
+      }
+
+      /* Анимации */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content > * {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      .content > *:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .content > *:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .content > *:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .content > *:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      /* Скроллбар */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #2d3747;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #ffd700;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ffc600;
+      }
+
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .content {
+          padding: 15px 20px 30px;
+        }
+
+        .section-title {
+          font-size: 24px;
+          margin: 20px 0 30px;
+        }
+
+        .subtitle {
+          font-size: 20px;
+          margin: 25px 0 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header {
+          padding: 15px;
+        }
+
+        .title {
+          font-size: 20px;
+        }
+
+        .back-button,
+        .home-button {
+          width: 24px;
+          height: 24px;
+        }
+
+        .section-title {
+          font-size: 22px;
+        }
+
+        .subtitle {
+          font-size: 18px;
+        }
+
+        ol li {
+          margin-bottom: 15px;
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <a href="daraat.html">
+        <svg
+          class="back-button"
+          viewBox="0 0 24 24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </a>
+      <div class="title">ДААРАТ</div>
+      <a href="index.html">
+        <svg
+          class="home-button"
+          viewBox="0 0 24 24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="content">
+      <h1 class="section-title">ДААРАТ ТУУРАЛУУ</h1>
+
+      <div class="steps-container">
+        <h3>Даараттын парздары:</h3>
+        <ol>
+          <li>
+            Бетти жууйт, чач чыккан жерден баштап эзк алдына чейин, оң кулагынан
+            сол кулагына чейин.
+          </li>
+          <li>Эки колун чыканагы менен кошо жууйт.</li>
+          <li>
+            Баштын маңдайынан баштап төрттөн бирине масх тартуу (башка толук
+            масх тартуу сүннөт).
+          </li>
+          <li>Эки бутун томукту кошуп жууйт.</li>
+        </ol>
+      </div>
+
+      <div class="steps-container">
+        <h3>Даараттын сүннөттөрү:</h3>
+        <ol>
+          <li>Даарат алууга ниет кылуу.</li>
+          <li>Дааратты "Бисмилляхир-рахманир-рахим" деп баштоо.</li>
+          <li>Эки колун мууңга чейин үч жолу жууйт.</li>
+          <li>Мисвак менен тиш тазалоо.</li>
+          <li>Оозун үч жолу суу менен тамакка жеткире чайкоо.</li>
+          <li>Мурдуна уч жолу суу тартып чайкоо.</li>
+          <li>Баштын баарына масх тартуу.</li>
+          <li>Эки кулагына масх тартуу.</li>
+          <li>Кол жана бут манжаларынын салааларына суу жеткизип укалоо.</li>
+          <li>Ар бир мучонуу уч жолудан жууйт.</li>
+          <li>Даарат алганда ирети менен менен биринин артынан бирин жууйт.</li>
+          <li>Дааратты он жагынвн баштоо.</li>
+          <li>Даарат алганда токтоп калбастан аягына чыгаруу.</li>
+        </ol>
+      </div>
+
+      <h2 class="subtitle">Дааратты ушундайча алат:</h2>
+      <ol>
+        <li>Дарат алууга ниет кылат.</li>
+        <li>"Бисмиллахир-рохмаанир-рохимди айтат.</li>
+        <li>Колдорун муунга чейин уч жолу жууйт.</li>
+        <li>Оозуна уч жолу суу алып чайкайт.</li>
+        <li>Мурдуна уч жолу суу алып чайкайт.</li>
+        <li>Бетин уч жолу жууйт.</li>
+        <li>Алгач он колун, анан сол колун чыканакты кошо уч жолудан жууйт.</li>
+        <li>
+          Эки колун суулап башынын баарына масх тартат. Анан кулагынын ичиндеги
+          сызыгын соомойу менен тазалап, артын баш бармамк менен кулактын
+          ойдосуно карай суртуп коёт.
+        </li>
+        <li>Буттарды томукту кошо жууйт.</li>
+      </ol>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // Add animation class when element is in viewport
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        document.querySelectorAll(".content > *").forEach((el) => {
+          observer.observe(el);
+        });
+
+        // Adjust content height
+        function adjustContentHeight() {
+          const headerHeight = document.querySelector(".header").offsetHeight;
+          const windowHeight = window.innerHeight;
+          const content = document.querySelector(".content");
+
+          content.style.maxHeight = `${windowHeight - headerHeight}px`;
+          content.style.paddingTop = "20px";
+        }
+
+        // Initial adjustment
+        adjustContentHeight();
+
+        // Adjust on resize
+        window.addEventListener("resize", adjustContentHeight);
+      });
+    </script>
+  </body>
+</html>
