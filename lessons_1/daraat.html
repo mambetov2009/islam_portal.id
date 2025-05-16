@@ -13,7 +13,7 @@
         --primary-color: #4caf50;
         --primary-dark: #388e3c;
         --bg-color: #1e232f;
-        --card-bg: #2a3346;
+        --card-bg: rgba(42, 51, 70, 0.85);
         --text-color: #ffffff;
         --text-secondary: #b0b0b0;
         --radius: 12px;
@@ -30,13 +30,19 @@
 
       body {
         font-family: Arial, sans-serif;
-        background-color: var(--bg-color);
         color: var(--text-color);
         height: 100vh;
         width: 100%;
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        background: linear-gradient(
+            rgba(30, 35, 47, 0.85),
+            rgba(30, 35, 47, 0.9)
+          ),
+          url("https://masterpiecer-images.s3.yandex.net/8c7ef64e6f6411ee92f03a7ca4cc1bdc:upscaled")
+            no-repeat center center fixed;
+        background-size: cover;
       }
 
       .header {
@@ -113,6 +119,8 @@
         transition: var(--transition);
         position: relative;
         overflow: hidden;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .menu-item::before {
@@ -140,7 +148,7 @@
 
       .menu-item:active {
         transform: translateY(0);
-        background-color: #333e54;
+        background-color: rgba(51, 62, 84, 0.85);
       }
 
       .item-title {

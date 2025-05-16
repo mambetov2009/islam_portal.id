@@ -9,11 +9,17 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
 
       body {
-        background-color: #1e2433;
+        background: linear-gradient(
+            rgba(30, 36, 51, 0.9),
+            rgba(30, 36, 51, 0.95)
+          ),
+          url("https://img7.arrivo.ru/cfcd/a4/149/1/6755605315_ba3442af75_b.jpg")
+            no-repeat center center fixed;
+        background-size: cover;
         color: white;
         min-height: 100vh;
         position: relative;
@@ -25,54 +31,106 @@
         justify-content: center;
         padding: 20px 10px;
         position: relative;
-        border-bottom: 1px solid #2a3142;
+        border-bottom: 1px solid rgba(42, 49, 66, 0.7);
+        background-color: rgba(30, 36, 51, 0.8);
+        backdrop-filter: blur(8px);
+      }
+
+      .back-btn,
+      .home-btn {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .back-btn:hover,
+      .home-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
       }
 
       .back-btn {
-        position: absolute;
         left: 15px;
-        cursor: pointer;
       }
 
       .home-btn {
-        position: absolute;
         right: 15px;
-        cursor: pointer;
       }
 
       .title {
         font-size: 20px;
         font-weight: bold;
         letter-spacing: 1px;
+        color: #4caf50;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
 
       .prayer-list {
-        padding: 0;
+        padding: 20px 0;
         list-style: none;
+        max-width: 600px;
+        margin: 0 auto;
       }
 
       .prayer-item {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 18px 15px;
-        border-bottom: 1px solid #2a3142;
+        padding: 18px 20px;
+        margin: 0 15px 15px;
+        border-radius: 12px;
         cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: rgba(42, 49, 66, 0.85);
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .prayer-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        background-color: rgba(42, 49, 66, 0.95);
+      }
+
+      .prayer-item:active {
+        transform: translateY(0);
       }
 
       .prayer-number {
-        margin-right: 20px;
-        font-weight: normal;
+        margin-right: 15px;
+        font-weight: bold;
+        color: #4caf50;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(76, 175, 80, 0.2);
+        border-radius: 50%;
       }
 
       .prayer-name {
         flex-grow: 1;
-        font-weight: normal;
+        font-weight: 500;
         font-size: 16px;
       }
 
       .arrow {
-        color: #777;
+        color: #b0b0b0;
+        font-size: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .prayer-item:hover .arrow {
+        color: #4caf50;
+        transform: translateX(3px);
       }
 
       /* Icons */
@@ -80,6 +138,34 @@
         width: 24px;
         height: 24px;
         fill: white;
+      }
+
+      /* Ripple effect */
+      .ripple {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+      }
+
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .prayer-item {
+          padding: 16px;
+          margin: 0 10px 10px;
+        }
+
+        .prayer-name {
+          font-size: 15px;
+        }
       }
     </style>
   </head>
@@ -106,17 +192,17 @@
 
     <ul class="prayer-list">
       <li class="prayer-item" onclick="navigateTo('namaz-tuuraluu.html')">
-        <span class="prayer-number">1.</span>
+        <span class="prayer-number">1</span>
         <span class="prayer-name">Намаз тууралуу</span>
         <span class="arrow">›</span>
       </li>
       <li class="prayer-item" onclick="navigateTo('besh-ubak-namazy.html')">
-        <span class="prayer-number">2.</span>
+        <span class="prayer-number">2</span>
         <span class="prayer-name">Беш убак намазы</span>
         <span class="arrow">›</span>
       </li>
       <li class="prayer-item" onclick="navigateTo('juma-namazy.html')">
-        <span class="prayer-number">3.</span>
+        <span class="prayer-number">3</span>
         <span class="prayer-name">Жума намазы</span>
         <span class="arrow">›</span>
       </li>
@@ -124,21 +210,87 @@
 
     <script>
       function navigateTo(url) {
-        window.location.href = url;
+        // Create ripple effect
+        const ripple = document.createElement("span");
+        ripple.classList.add("ripple");
+
+        // Position the ripple
+        const rect = event.currentTarget.getBoundingClientRect();
+        const diameter = Math.max(rect.width, rect.height);
+        const radius = diameter / 2;
+
+        ripple.style.width = ripple.style.height = `${diameter}px`;
+        ripple.style.left = `${event.clientX - rect.left - radius}px`;
+        ripple.style.top = `${event.clientY - rect.top - radius}px`;
+
+        // Add ripple to the item
+        const existingRipple = event.currentTarget.querySelector(".ripple");
+        if (existingRipple) {
+          existingRipple.remove();
+        }
+
+        event.currentTarget.appendChild(ripple);
+
+        // Navigate after animation
+        setTimeout(() => {
+          window.location.href = url;
+        }, 300);
       }
 
       // Back button functionality
       document
         .querySelector(".back-btn")
-        .addEventListener("click", function () {
-          window.history.back();
+        .addEventListener("click", function (e) {
+          // Ripple effect
+          const ripple = document.createElement("span");
+          ripple.classList.add("ripple");
+
+          const rect = this.getBoundingClientRect();
+          const diameter = Math.max(rect.width, rect.height);
+          const radius = diameter / 2;
+
+          ripple.style.width = ripple.style.height = `${diameter}px`;
+          ripple.style.left = `${e.clientX - rect.left - radius}px`;
+          ripple.style.top = `${e.clientY - rect.top - radius}px`;
+
+          const existingRipple = this.querySelector(".ripple");
+          if (existingRipple) {
+            existingRipple.remove();
+          }
+
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            window.history.back();
+          }, 300);
         });
 
       // Home button functionality
       document
         .querySelector(".home-btn")
-        .addEventListener("click", function () {
-          window.location.href = "index.html";
+        .addEventListener("click", function (e) {
+          // Ripple effect
+          const ripple = document.createElement("span");
+          ripple.classList.add("ripple");
+
+          const rect = this.getBoundingClientRect();
+          const diameter = Math.max(rect.width, rect.height);
+          const radius = diameter / 2;
+
+          ripple.style.width = ripple.style.height = `${diameter}px`;
+          ripple.style.left = `${e.clientX - rect.left - radius}px`;
+          ripple.style.top = `${e.clientY - rect.top - radius}px`;
+
+          const existingRipple = this.querySelector(".ripple");
+          if (existingRipple) {
+            existingRipple.remove();
+          }
+
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 300);
         });
     </script>
   </body>

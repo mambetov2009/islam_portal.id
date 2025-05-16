@@ -11,8 +11,8 @@
         --accent: #f72585;
         --light: #f8f9fa;
         --dark: #212529;
-        --text: #2b2d42;
-        --bg: #f8f9fa;
+        --text: #ffffff;
+        --bg: #1e2433;
       }
 
       * {
@@ -23,14 +23,24 @@
       }
 
       body {
-        background-color: var(--bg);
+        background: linear-gradient(
+            rgba(30, 36, 51, 0.9),
+            rgba(30, 36, 51, 0.95)
+          ),
+          url("https://img.freepik.com/free-photo/view-world-monument-celebrate-world-heritage-day_23-2151297220.jpg?semt=ais_hybrid&w=740")
+            no-repeat center center fixed;
+        background-size: cover;
         color: var(--text);
         line-height: 1.6;
         padding-bottom: 60px;
       }
 
       .header {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        background: linear-gradient(
+          135deg,
+          rgba(67, 97, 238, 0.9),
+          rgba(58, 12, 163, 0.9)
+        );
         color: white;
         padding: 20px 0;
         text-align: center;
@@ -38,6 +48,8 @@
         position: sticky;
         top: 0;
         z-index: 100;
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .header h1 {
@@ -64,17 +76,24 @@
       #search {
         width: 100%;
         padding: 12px 20px;
-        border: 2px solid #e9ecef;
+        border: 2px solid rgba(255, 255, 255, 0.1);
         border-radius: 50px;
         font-size: 1rem;
         outline: none;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      #search::placeholder {
+        color: rgba(255, 255, 255, 0.7);
       }
 
       #search:focus {
         border-color: var(--primary);
-        box-shadow: 0 2px 12px rgba(67, 97, 238, 0.2);
+        box-shadow: 0 2px 12px rgba(67, 97, 238, 0.3);
+        background-color: rgba(255, 255, 255, 0.15);
       }
 
       .dua-list {
@@ -84,17 +103,19 @@
       }
 
       .dua-card {
-        background: white;
+        background: rgba(42, 49, 66, 0.85);
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         position: relative;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .dua-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       }
 
       .dua-number {
@@ -122,7 +143,7 @@
         text-align: right;
         direction: rtl;
         margin-bottom: 15px;
-        color: var(--secondary);
+        color: #a5b4fc;
         line-height: 1.8;
         font-weight: 500;
       }
@@ -135,7 +156,7 @@
 
       .dua-reference {
         font-size: 0.85rem;
-        color: #6c757d;
+        color: #adb5bd;
         font-style: italic;
       }
 
@@ -181,14 +202,14 @@
       .no-results {
         text-align: center;
         padding: 40px 0;
-        color: #6c757d;
+        color: #adb5bd;
         display: none;
       }
 
       .tabs {
         display: flex;
         margin-bottom: 20px;
-        border-bottom: 1px solid #e9ecef;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .tab-btn {
@@ -197,7 +218,7 @@
         border: none;
         cursor: pointer;
         font-size: 1rem;
-        color: #6c757d;
+        color: #adb5bd;
         position: relative;
         transition: all 0.3s ease;
       }
@@ -310,7 +331,7 @@
 
       <div class="tab-content" id="favorite-duas">
         <div class="dua-list" id="favorites-container">
-          <p style="text-align: center; padding: 40px 0; color: #6c757d">
+          <p style="text-align: center; padding: 40px 0; color: #adb5bd">
             Пока нет избранных дуа
           </p>
         </div>
@@ -572,7 +593,7 @@
 
         if (duasToRender.length === 0 && container === favoritesContainer) {
           container.innerHTML =
-            '<p style="text-align: center; padding: 40px 0; color: #6c757d;">Пока нет избранных дуа</p>';
+            '<p style="text-align: center; padding: 40px 0; color: #adb5bd;">Пока нет избранных дуа</p>';
           return;
         }
 
