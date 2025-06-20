@@ -2,208 +2,416 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Презентации и сайты под заказ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIRAT | Создание сайтов под ключ</title>
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
-      :root {
-        --primary-color: #2e8b57;
-        --secondary-color: #25d366;
-        --telegram-color: #229ed9;
-        --dark-green: #128c4a;
-        --bg-color: #f5fafd;
-        --text-color: #222;
-        --white: #ffffff;
-        --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      html {
+        scroll-behavior: smooth;
       }
 
+      :root {
+        --blue: #2563eb;
+        --blue-dark: #1d4ed8;
+        --yellow: #facc15;
+        --bg: #f9fafb;
+        --text: #1f2937;
+        --gray: #6b7280;
+      }
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-
       body {
-        font-family: "Montserrat", sans-serif;
-        background: var(--bg-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 20px;
-        color: var(--text-color);
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
       }
-
-      .container {
-        background: var(--white);
-        padding: 40px 30px;
-        border-radius: 20px;
-        box-shadow: var(--shadow);
-        max-width: 700px;
-        width: 100%;
+      header {
+        background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+        color: #fff;
         text-align: center;
-        animation: fadeInUp 1s forwards;
-        overflow: hidden;
+        padding: 80px 20px 60px;
       }
-
-      .container::before {
-        content: "";
-        display: block;
-        height: 6px;
-        background: linear-gradient(
-          90deg,
-          var(--primary-color),
-          var(--secondary-color)
-        );
-        margin-bottom: 20px;
-        border-radius: 3px;
+      header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
       }
-
-      h1 {
-        color: var(--primary-color);
-        font-size: 2rem;
-        margin-bottom: 20px;
-        font-weight: 700;
-      }
-
-      p {
+      header p {
         font-size: 1.1rem;
-        margin-bottom: 30px;
-        color: var(--text-color);
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
       }
 
-      .contacts {
+      .section {
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 40px;
+        color: var(--blue);
+      }
+
+      .about {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .about p {
+        font-size: 1.05rem;
+        color: var(--gray);
+      }
+
+      .features {
         display: flex;
         flex-wrap: wrap;
+        gap: 30px;
         justify-content: center;
-        gap: 15px;
-        margin-bottom: 30px;
+        margin: 40px 0;
       }
 
-      .contact-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 24px;
-        border-radius: 40px;
-        text-decoration: none;
+      .feature {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        max-width: 300px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+        text-align: center;
+        transition: 0.3s;
+      }
+
+      .feature:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--blue);
+      }
+
+      .feature p {
+        color: var(--gray);
+        font-size: 0.95rem;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .portfolio-item {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+      }
+
+      .portfolio-item:hover {
+        transform: translateY(-8px);
+      }
+
+      .portfolio-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .portfolio-info {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .portfolio-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+
+      .portfolio-info p {
+        color: var(--gray);
+        font-size: 0.95rem;
+      }
+
+      .price {
+        margin-top: 10px;
+        color: var(--blue);
         font-weight: 600;
-        font-size: 1rem;
-        color: var(--white);
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       }
 
-      .contact-item:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      .order-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: var(--yellow);
+        color: #000;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
       }
 
-      .whatsapp {
-        background-color: var(--secondary-color);
+      .order-btn:hover {
+        background-color: #fbbf24;
       }
 
-      .whatsapp:hover {
-        background-color: var(--dark-green);
+      .contact {
+        text-align: center;
+        margin-top: 60px;
+      }
+
+      .btn {
+        display: inline-block;
+        margin: 10px;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        transition: 0.3s ease;
       }
 
       .telegram {
-        background-color: var(--telegram-color);
+        background-color: #0088cc;
       }
-
       .telegram:hover {
-        background-color: #178ecb;
+        background-color: #0073b1;
       }
 
-      .contact-icon {
-        width: 20px;
-        height: 20px;
+      .whatsapp {
+        background-color: #25d366;
+      }
+      .whatsapp:hover {
+        background-color: #1ebe57;
+      }
+      .scroll-btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 28px;
+        background-color: var(--yellow);
+        color: #000;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .scroll-btn:hover {
+        background-color: #fbbf24;
       }
 
-      .client-img {
-        margin-top: 10px;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: contain;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      footer {
+        background-color: var(--text);
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 60px;
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
+      .copyright {
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.2rem;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        .portfolio-img {
+          height: 160px;
         }
-      }
-
-      @media (max-width: 600px) {
-        h1 {
-          font-size: 1.5rem;
-        }
-        .contact-item {
-          width: 100%;
-          justify-content: center;
+        .feature {
+          max-width: 90%;
         }
       }
     </style>
   </head>
   <body>
-    <div class="container animate__animated animate__fadeIn">
-      <h1>Для студентов есть лучшее решение!</h1>
+    <header>
+      <h1>SIRAT | Веб-разработка под ключ</h1>
       <p>
-        Делаем стильные, понятные и удобные презентации по любой теме. Также
-        создаём простые сайты, учебные лендинги и проекты на HTML, CSS и
-        JavaScript.
-        <br /><br />
-        Только законные и честные заказы, быстро и по доступной цене.
-        <br /><br />
-        Свяжитесь с нами через мессенджеры:
+        Продаю готовые сайты и создаю на заказ — быстро, адаптивно и законно
       </p>
+      <a href="#contact" class="scroll-btn">Связаться</a>
+    </header>
 
-      <div class="contacts">
-        <a
-          href="https://wa.me/996505694279?text=Здравствуйте!%20Хочу%20сделать%20заказ"
-          target="_blank"
-          class="contact-item whatsapp"
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-            class="contact-icon"
-            alt="WhatsApp"
-          />
-          WhatsApp
-        </a>
-
-        <a
-          href="https://t.me/Nursakeeeeee"
-          target="_blank"
-          class="contact-item telegram"
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png"
-            class="contact-icon"
-            alt="Telegram"
-          />
-          Telegram
-        </a>
+    <section class="section">
+      <div class="about">
+        <h2 class="section-title">Обо мне</h2>
+        <p>
+          Я создаю профессиональные сайты для бизнеса, блогов, портфолио и
+          интернет-магазинов. Работаю честно и только с легальными проектами.
+        </p>
       </div>
 
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-        alt="Клиенты"
-        class="client-img"
-      />
-    </div>
+      <div class="features">
+        <div class="feature">
+          <h3>Индивидуальный подход</h3>
+          <p>
+            Каждый сайт создается по вашему желанию — дизайн, структура и
+            функции.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Адаптивный дизайн</h3>
+          <p>Все сайты отлично работают на телефоне, планшете и ПК.</p>
+        </div>
+        <div class="feature">
+          <h3>Быстрая работа</h3>
+          <p>Разработка сайта в течение 2–5 дней после согласования.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Примеры работ</h2>
+      <div class="portfolio-grid">
+        <!-- 1 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Корпоративный сайт"
+          />
+          <div class="portfolio-info">
+            <h3>Корпоративный сайт</h3>
+            <p>Современный дизайн для компаний</p>
+            <div class="price">от 25 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Интернет-магазин"
+          />
+          <div class="portfolio-info">
+            <h3>Интернет-магазин</h3>
+            <p>С корзиной и фильтрами</p>
+            <div class="price">от 45 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Лендинг"
+          />
+          <div class="portfolio-info">
+            <h3>Лендинг</h3>
+            <p>Для рекламы товаров и услуг</p>
+            <div class="price">от 15 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1603575448363-8f78dbfcac4a?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Образовательная платформа"
+          />
+          <div class="portfolio-info">
+            <h3>Образовательная платформа</h3>
+            <p>Курсы, личный кабинет, авторизация</p>
+            <div class="price">от 60 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1601933470928-cdb91f1d9116?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Личный блог"
+          />
+          <div class="portfolio-info">
+            <h3>Личный блог</h3>
+            <p>Для публикаций, дневников и статей</p>
+            <div class="price">от 20 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Сайт ресторана"
+          />
+          <div class="portfolio-info">
+            <h3>Сайт ресторана</h3>
+            <p>Меню, бронирование, онлайн-заказ</p>
+            <div class="price">от 35 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1588776814546-29c14a1ce9b3?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Медицинский сайт"
+          />
+          <div class="portfolio-info">
+            <h3>Медицинский сайт</h3>
+            <p>Запись на приём, информация о клинике</p>
+            <div class="price">от 40 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="portfolio-item">
+          <img
+            src="https://images.unsplash.com/photo-1612178994376-07e2032d94aa?auto=format&fit=crop&w=600&q=80"
+            class="portfolio-img"
+            alt="Сайт дизайнера"
+          />
+          <div class="portfolio-info">
+            <h3>Сайт дизайнера</h3>
+            <p>Минималистичный стиль и кейсы</p>
+            <div class="price">от 28 000 ₽</div>
+            <a href="https://t.me/ТВОЙ_ТЕЛЕГРАМ" class="order-btn">Заказать</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact" id="contact">
+        <h2 class="section-title">Связаться со мной</h2>
+        <a href="https://t.me/Nursakeeeeee" class="btn telegram"
+          >📩 Написать в Telegram</a
+        >
+        <a
+          href="https://wa.me/996505694279?text=Здравствуйте!%20Хочу%20сделать%20заказ"
+          class="btn whatsapp"
+          >💬 Написать в WhatsApp</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <div class="copyright">
+        © 2025 SIRAT | Профессиональная веб-разработка
+      </div>
+    </footer>
   </body>
 </html>
